@@ -28,6 +28,7 @@ object Form1: TForm1
     Height = 23
     Top = 265
     Width = 191
+    OnChange = Edit3Change
     TabOrder = 2
   end
   object ComboBox1: TComboBox

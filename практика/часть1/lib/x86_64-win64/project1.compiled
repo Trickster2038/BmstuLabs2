@@ -2,4 +2,5 @@
 <CONFIG>
   <Compiler Value="C:\lazarus\fpc\3.0.4\bin\x86_64-win64\fpc.exe" Date="1331391477"/>
   <Params Value=" -MObjFPC -Scghi -O1 -g -gl -WG -l -vewnhibq -FiF:\@BMSTU\BmstuLabs2\практика\часть1\lib\x86_64-win64 -FuC:\lazarus\lcl\units\x86_64-win64\win32 -FuC:\lazarus\lcl\units\x86_64-win64 -FuC:\lazarus\components\lazutils\lib\x86_64-win64 -FuC:\lazarus\packager\units\x86_64-win64 -FuF:\@BMSTU\BmstuLabs2\практика\часть1\ -FUF:\@BMSTU\BmstuLabs2\практика\часть1\lib\x86_64-win64\ -FEF:\@BMSTU\BmstuLabs2\практика\часть1\ -oF:\@BMSTU\BmstuLabs2\практика\часть1\project1.exe -dLCL -dLCLwin32 project1.lpr"/>
+  <Complete Value="False"/>
 </CONFIG>

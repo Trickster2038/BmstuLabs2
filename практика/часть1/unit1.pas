@@ -30,6 +30,7 @@ type
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Edit2Change(Sender: TObject);
+    procedure Edit3Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
 
@@ -45,7 +46,14 @@ implementation
 type
   comp = record
     cost, proc, ram, hdd: integer;
+    exist : boolean;
   end;
+
+  f = file of comp;
+
+var
+  f1: f;
+  buf: comp;
 
 {$R *.lfm}
 
@@ -62,8 +70,21 @@ begin
 end;
 
 procedure TForm1.Button5Click(Sender: TObject);
+var
+  code: integer;
+  s:string;
 begin
-
+  assignFile(f1, 'comps.dat');
+  reset(f1);
+ {Str(,s);
+  Val(s, buf.cost, code);}
+  buf.exist := true;
+  Val(Form1.Edit1.Text, buf.cost, code);
+  Val(Form1.Edit2.Text, buf.ram, code);
+  Val(Form1.Edit3.Text, buf.hdd, code);
+  buf.proc := Form1.ComboBox1.ItemIndex;
+  Seek(f1,FileSize(f1));
+  write(f1,buf);
 end;
 
 procedure TForm1.Button6Click(Sender: TObject);
@@ -72,6 +93,11 @@ begin
 end;
 
 procedure TForm1.Edit2Change(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Edit3Change(Sender: TObject);
 begin
 
 end;
