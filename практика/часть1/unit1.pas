@@ -18,6 +18,7 @@ type
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
+    Button7: TButton;
     ComboBox1: TComboBox;
     Edit1: TEdit;
     Edit2: TEdit;
@@ -25,7 +26,7 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    Panel1: TPanel;
+    Memo1: TMemo;
     procedure Button1Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
@@ -46,7 +47,7 @@ implementation
 type
   comp = record
     cost, proc, ram, hdd: integer;
-    exist : boolean;
+    exist: boolean;
   end;
 
   f = file of comp;
@@ -72,34 +73,49 @@ end;
 procedure TForm1.Button5Click(Sender: TObject);
 var
   code: integer;
-  s:string;
+  s: string;
 begin
   assignFile(f1, 'comps.dat');
   reset(f1);
  {Str(,s);
   Val(s, buf.cost, code);}
-  buf.exist := true;
   Val(Form1.Edit1.Text, buf.cost, code);
   Val(Form1.Edit2.Text, buf.ram, code);
   Val(Form1.Edit3.Text, buf.hdd, code);
+  // add protection by code
+  buf.exist := True;
   buf.proc := Form1.ComboBox1.ItemIndex;
-  Seek(f1,FileSize(f1));
-  write(f1,buf);
+  Seek(f1, FileSize(f1));
+  Write(f1, buf);
+  CloseFile(f1);
 end;
 
 procedure TForm1.Button6Click(Sender: TObject);
+var s:string;
 begin
+  assignFile(f1, 'comps.dat');
+  reset(f1);
+  Form1.Memo1.Text:='cost | ram | disk | proc';
+  while not EOF(f1) do
+  begin
+    read(f1,buf);
+    if buf.exist then
+     begin
+     str(buf.cost, s);
+     Form1.Memo1.Text:=Form1.Memo1.Text + s + ' | ';
 
+     end;
+  end;
 end;
 
 procedure TForm1.Edit2Change(Sender: TObject);
 begin
-
+ // for id
 end;
 
 procedure TForm1.Edit3Change(Sender: TObject);
 begin
-
+ // for id
 end;
 
 end.
