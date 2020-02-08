@@ -19,6 +19,7 @@ type
     Button5: TButton;
     Button6: TButton;
     Button7: TButton;
+    Button8: TButton;
     ComboBox1: TComboBox;
     Edit1: TEdit;
     Edit2: TEdit;
@@ -28,6 +29,8 @@ type
     Label3: TLabel;
     Memo1: TMemo;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Edit2Change(Sender: TObject);
@@ -66,8 +69,101 @@ begin
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
+var
+  s: string;
+  maxCost, code: integer;
 begin
+  assignFile(f1, 'comps.dat');
+  reset(f1);
+  Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
+  while not EOF(f1) do
+  begin
+    Read(f1, buf);
+    val(Form1.Edit1.Text, maxCost, code);
+    // add protection
+    if (buf.exist) and (buf.cost <= maxCost) then
+    begin
+      str(buf.cost, s);
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      str(buf.ram, s);
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      str(buf.hdd, s);
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      case buf.proc of
+        0: s := 'x32';
+        1: s := 'x64';
+        2: s := 'other';
+      end;
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      Form1.Memo1.Text := Form1.Memo1.Text + #13 + #10;
+    end;
+  end;
+end;
 
+procedure TForm1.Button2Click(Sender: TObject);
+var
+  s: string;
+  minRam, code: integer;
+begin
+  assignFile(f1, 'comps.dat');
+  reset(f1);
+  Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
+  while not EOF(f1) do
+  begin
+    Read(f1, buf);
+    val(Form1.Edit2.Text, minRam, code);
+    // add protection
+    if (buf.exist) and (buf.ram >= minRam) then
+    begin
+      str(buf.cost, s);
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      str(buf.ram, s);
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      str(buf.hdd, s);
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      case buf.proc of
+        0: s := 'x32';
+        1: s := 'x64';
+        2: s := 'other';
+      end;
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      Form1.Memo1.Text := Form1.Memo1.Text + #13 + #10;
+    end;
+  end;
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+var
+  s: string;
+  minRam, minDisk, procType, code: integer;
+begin
+  assignFile(f1, 'comps.dat');
+  reset(f1);
+  Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
+  while not EOF(f1) do
+  begin
+    Read(f1, buf);
+    val(Form1.Edit3.Text, minDisk, code);
+    val(Form1.Edit2.Text, minRam, code);
+    // add protection
+    if (buf.exist) and (buf.ram >= minRam) and (buf.hdd >= minDisk) and
+      (buf.proc = Form1.ComboBox1.ItemIndex) then
+    begin
+      str(buf.cost, s);
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      str(buf.ram, s);
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      str(buf.hdd, s);
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      case buf.proc of
+        0: s := 'x32';
+        1: s := 'x64';
+        2: s := 'other';
+      end;
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      Form1.Memo1.Text := Form1.Memo1.Text + #13 + #10;
+    end;
+  end;
 end;
 
 procedure TForm1.Button5Click(Sender: TObject);
@@ -91,31 +187,42 @@ begin
 end;
 
 procedure TForm1.Button6Click(Sender: TObject);
-var s:string;
+var
+  s: string;
 begin
   assignFile(f1, 'comps.dat');
   reset(f1);
-  Form1.Memo1.Text:='cost | ram | disk | proc';
+  Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
   while not EOF(f1) do
   begin
-    read(f1,buf);
+    Read(f1, buf);
     if buf.exist then
-     begin
-     str(buf.cost, s);
-     Form1.Memo1.Text:=Form1.Memo1.Text + s + ' | ';
-
-     end;
+    begin
+      str(buf.cost, s);
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      str(buf.ram, s);
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      str(buf.hdd, s);
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      case buf.proc of
+        0: s := 'x32';
+        1: s := 'x64';
+        2: s := 'other';
+      end;
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      Form1.Memo1.Text := Form1.Memo1.Text + #13 + #10;
+    end;
   end;
 end;
 
 procedure TForm1.Edit2Change(Sender: TObject);
 begin
- // for id
+  // for id
 end;
 
 procedure TForm1.Edit3Change(Sender: TObject);
 begin
- // for id
+  // for id
 end;
 
 end.
