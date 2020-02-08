@@ -1,0 +1,7 @@
+﻿cl : командная строка warning D9025: переопределение "/sdl-" на "/GS-"
+  Source.cpp
+F:\@BMSTU\BmstuLabs2\labs\lab2\Project1\Project1\Source.cpp(10,9): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+F:\@BMSTU\BmstuLabs2\labs\lab2\Project1\Project1\Source.cpp(11,9): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+F:\@BMSTU\BmstuLabs2\labs\lab2\Project1\Project1\Source.cpp(8,1): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(1274): message : см. объявление "scanf"
+  Project1.vcxproj -> F:\@BMSTU\BmstuLabs2\labs\lab2\Project1\Debug\Project1.exe
