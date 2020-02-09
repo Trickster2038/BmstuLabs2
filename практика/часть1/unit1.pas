@@ -5,7 +5,8 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
+  ExtDlgs;
 
 type
 
@@ -28,9 +29,11 @@ type
     Label2: TLabel;
     Label3: TLabel;
     Memo1: TMemo;
+    PaintBox1: TPaintBox;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
@@ -167,6 +170,49 @@ begin
       Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
       Form1.Memo1.Text := Form1.Memo1.Text + #13 + #10;
     end;
+  end;
+  CloseFile(f1);
+end;
+
+//TROUBLE SHOOTING
+//Mem Table refresh
+procedure TForm1.Button4Click(Sender: TObject);
+var
+  maxCost, maxRam: integer;
+  k1, k2: real;
+  bufOld: comp;
+begin
+  assignFile(f1, 'comps.dat');
+  reset(f1);
+  maxCost := 0;
+  maxRam := 0;
+  while not EOF(f1) do
+  begin
+    Read(f1, buf);
+    if buf.exist then
+    begin
+      if buf.cost > maxCost then
+        maxCost := buf.cost;
+      if buf.Ram > maxRam then
+        maxRam := buf.ram;
+    end;
+  end;
+  k1 := PaintBox1.Width;
+  k2 := PaintBox1.Height;
+  reset(f1);
+  Read(f1, bufOld);
+  Read(f1, buf);
+  // ADD SORT
+  while not EOF(f1) do
+  begin
+    //brush
+    PaintBox1.Canvas.Line(
+      trunc(k1 * (bufOld.ram / maxRam)),
+      PaintBox1.Height - trunc(k2 * (bufOld.cost / maxCost)),
+      trunc(k1 * (buf.ram / maxRam)),
+      PaintBox1.Height - trunc(k2 * (buf.cost / maxCost)));
+    bufOld := buf;
+    Read(f1, buf);
   end;
   CloseFile(f1);
 end;

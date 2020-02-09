@@ -2,10 +2,10 @@ object Form1: TForm1
   Left = 191
   Height = 456
   Top = 111
-  Width = 1015
+  Width = 1110
   Caption = 'Form1'
   ClientHeight = 456
-  ClientWidth = 1015
+  ClientWidth = 1110
   OnCreate = FormCreate
   LCLVersion = '2.0.6.0'
   object Edit1: TEdit
@@ -79,6 +79,7 @@ object Form1: TForm1
     Top = 136
     Width = 123
     Caption = 'TODO refresh graph'
+    OnClick = Button4Click
     TabOrder = 7
   end
   object Button5: TButton
@@ -150,5 +151,11 @@ object Form1: TForm1
     Caption = 'remove'
     OnClick = Button6Click
     TabOrder = 12
+  end
+  object PaintBox1: TPaintBox
+    Left = 736
+    Height = 350
+    Top = 16
+    Width = 350
   end
 end
