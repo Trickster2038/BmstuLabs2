@@ -34,6 +34,7 @@ type
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
+    procedure Button8Click(Sender: TObject);
     procedure Edit2Change(Sender: TObject);
     procedure Edit3Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -66,7 +67,7 @@ var
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-
+  Form1.Memo1.Text := 'Waiting';
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -248,6 +249,34 @@ begin
     end;
   end;
   CloseFile(f1);
+end;
+
+procedure TForm1.Button8Click(Sender: TObject);
+var
+  f2: f;
+begin
+  Form1.Memo1.Text := 'Mem table refreshed';
+  AssignFile(f2, 'buffer.dat');
+  Rewrite(f2);
+  AssignFile(f1, 'comps.dat');
+  reset(f1);
+  while not EOF(f1) do
+  begin
+    Read(f1, buf);
+    if buf.exist then
+      Write(f2, buf);
+  end;
+  CloseFile(f1);
+  CloseFile(f2);
+  rewrite(f1);
+  reset(f2);
+  while not EOF(f2) do
+  begin
+    Read(f2, buf);
+    Write(f1, buf);
+  end;
+  closeFile(f1);
+  closeFile(f2);
 end;
 
 procedure TForm1.Edit2Change(Sender: TObject);
