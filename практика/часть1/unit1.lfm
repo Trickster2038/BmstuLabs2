@@ -78,7 +78,7 @@ object Form1: TForm1
     Height = 25
     Top = 136
     Width = 123
-    Caption = 'TODO refresh graph'
+    Caption = 'refresh graph'
     OnClick = Button4Click
     TabOrder = 7
   end
@@ -128,7 +128,7 @@ object Form1: TForm1
     Left = 416
     Height = 363
     Top = 16
-    Width = 280
+    Width = 272
     Lines.Strings = (
       'Memo1'
     )
@@ -148,7 +148,7 @@ object Form1: TForm1
     Height = 25
     Top = 265
     Width = 123
-    Caption = 'remove'
+    Caption = 'quick remove'
     OnClick = Button6Click
     TabOrder = 12
   end
@@ -157,5 +157,44 @@ object Form1: TForm1
     Height = 350
     Top = 16
     Width = 350
+  end
+  object Label4: TLabel
+    Left = 896
+    Height = 20
+    Top = 368
+    Width = 32
+    Caption = 'RAM'
+    Font.Height = 20
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 696
+    Height = 20
+    Top = 175
+    Width = 29
+    Caption = 'Cost'
+    Font.Height = 20
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label6: TLabel
+    Left = 192
+    Height = 17
+    Top = 136
+    Width = 192
+    Caption = 'ALERT: refresh mem table before'
+    Font.Height = -13
+    ParentColor = False
+    ParentFont = False
+  end
+  object Button9: TButton
+    Left = 16
+    Height = 25
+    Top = 408
+    Width = 120
+    Caption = 'CLEAR ALL DATA'
+    OnClick = Button9Click
+    TabOrder = 13
   end
 end

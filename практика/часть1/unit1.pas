@@ -21,6 +21,7 @@ type
     Button6: TButton;
     Button7: TButton;
     Button8: TButton;
+    Button9: TButton;
     ComboBox1: TComboBox;
     Edit1: TEdit;
     Edit2: TEdit;
@@ -28,6 +29,9 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
     Memo1: TMemo;
     PaintBox1: TPaintBox;
     procedure Button1Click(Sender: TObject);
@@ -38,6 +42,7 @@ type
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure Button8Click(Sender: TObject);
+    procedure Button9Click(Sender: TObject);
     procedure Edit2Change(Sender: TObject);
     procedure Edit3Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -178,14 +183,48 @@ end;
 //Mem Table refresh
 procedure TForm1.Button4Click(Sender: TObject);
 var
-  maxCost, maxRam: integer;
+  maxCost, maxRam, minRam, id1, id2: integer;
   k1, k2: real;
   bufOld: comp;
+  f2: f;
+  endSort: boolean;
 begin
   assignFile(f1, 'comps.dat');
+  assignFile(f2, 'buf.dat');
+
+  reset(f1);
+  endSort := False;
+  while not endSort do
+  begin
+    endSort := True;
+    reset(f1);
+    Read(f1, bufOld);
+    while not EOF(f1) do     //correct
+    begin
+      //Read(f1, bufOld);
+      Read(f1, buf);
+      if bufOld.ram > buf.ram then
+      begin
+        endSort := False;
+        seek(f1, filepos(f1) - 2);
+        Write(f1, buf);
+        Write(f1, bufold);
+        id1 := filepos(f1) - 1;
+        CloseFile(f1);
+        Reset(f1);
+        Seek(f1, id1);
+      end;
+      bufOld := buf;
+    end;
+    CloseFile(f1);
+  end;
+  //close
+
+
   reset(f1);
   maxCost := 0;
   maxRam := 0;
+  PaintBox1.Canvas.Clear;
   while not EOF(f1) do
   begin
     Read(f1, buf);
@@ -261,6 +300,7 @@ begin
       buf.hdd := 0;
       buf.proc := 0;
       buf.ram := 0;
+      Seek(f1, filepos(f1) - 1);
       Write(f1, buf);
     end;
   end;
@@ -269,7 +309,8 @@ end;
 
 procedure TForm1.Button7Click(Sender: TObject);
 var
-  s: string;
+  s, ss: string;
+  i: byte;
 begin
   assignFile(f1, 'comps.dat');
   reset(f1);
@@ -280,11 +321,22 @@ begin
     if buf.exist then
     begin
       str(buf.cost, s);
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      ss := '';
+      for i := 1 to 7 - length(s) do
+        ss := ss + ' ';
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ss + '| ';
+
       str(buf.ram, s);
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      ss := '';
+      for i := 1 to 7 - length(s) do
+        ss := ss + ' ';
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ss + '| ';
+
       str(buf.hdd, s);
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+      ss := '';
+      for i := 1 to 8 - length(s) do
+        ss := ss + ' ';
+      Form1.Memo1.Text := Form1.Memo1.Text + s + ss + '| ';
       case buf.proc of
         0: s := 'x32';
         1: s := 'x64';
@@ -323,6 +375,13 @@ begin
   end;
   closeFile(f1);
   closeFile(f2);
+end;
+
+procedure TForm1.Button9Click(Sender: TObject);
+begin
+  AssignFile(f1, 'comps.dat');
+  rewrite(f1);
+  closeFile(f1);
 end;
 
 procedure TForm1.Edit2Change(Sender: TObject);
