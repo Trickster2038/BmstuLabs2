@@ -61,7 +61,7 @@ begin
   if ComboBox1.ItemIndex = 1 then
   begin
     sq.Init(X, Y, ss, PaintBox1);
-    sq.Draw(clBlue);
+    sq.Draw(ColorBox1.Selected);
   end;
 end;
 

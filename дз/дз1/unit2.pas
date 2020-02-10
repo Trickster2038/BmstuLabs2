@@ -26,6 +26,14 @@ type
     procedure Draw(clr: TColor);
   end;
 
+  TCircle = object(TFigure)
+  private
+    size: integer;
+  public
+    procedure Init(a, b, s: integer; assoc: TPaintBox);
+    procedure Draw(clr: TColor);
+  end;
+
 
 
 implementation
@@ -47,6 +55,18 @@ procedure TSquare.Draw(clr: TColor);
 begin
   Self.connect.canvas.brush.color := clr;
   Self.connect.canvas.rectangle(x, y, x + size, y + size);
+end;
+
+procedure TCircle.Init(a, b, s: integer; assoc: TPaintBox);
+begin
+  inherited Init(a, b, assoc);
+  Self.size := s;
+end;
+
+procedure TCircle.Draw(clr: TColor);
+begin
+  Self.connect.canvas.brush.color := clr;
+  Self.connect.canvas.ellipse(x, y, x + size, y + size);
 end;
 
 end.

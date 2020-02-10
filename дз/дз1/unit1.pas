@@ -36,6 +36,7 @@ implementation
 
 var
   sq: TSquare;
+  circle: TCircle;
 
 {$R *.lfm}
 
@@ -62,6 +63,11 @@ begin
   begin
     sq.Init(X, Y, ss, PaintBox1);
     sq.Draw(ColorBox1.Selected);
+  end;
+  if ComboBox1.ItemIndex = 0 then
+  begin
+    circle.Init(X, Y, ss, PaintBox1);
+    circle.Draw(ColorBox1.Selected);
   end;
 end;
 

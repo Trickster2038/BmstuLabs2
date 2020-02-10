@@ -45,7 +45,7 @@ end;
 
 procedure TSquare.Draw(clr: TColor);
 begin
-  Self.connect.canvas.brush.color := clRed;
+  Self.connect.canvas.brush.color := clr;
   Self.connect.canvas.rectangle(x, y, x + size, y + size);
 end;
 
