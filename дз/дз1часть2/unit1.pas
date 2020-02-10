@@ -34,7 +34,7 @@ var
   circle: TCircle;
   square: TSquare;
   ellipse: TEllipse;
-  arg: real;
+  arg1, arg2, arg3: real;
 
 
 {$R *.lfm}
@@ -43,7 +43,10 @@ var
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  arg := 0;
+  arg1 := 0;
+  arg2 := 0;
+  arg3 := 0;
+
   Circle.Init(PaintBox1);
   Square.Init(PaintBox2);
   ellipse.Init(PaintBox3);
@@ -67,12 +70,18 @@ end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
 begin
-  if arg > (PI * 2) then
-    arg := 0;
-  arg := arg + 0.1;
-  Circle.Draw(arg);
-  Square.Draw(arg);
-  Ellipse.Draw(arg);
+  if arg1 > (PI * 2) then
+    arg1 := 0;
+  arg1 := arg1 + 0.1;
+  if arg2 > (PI * 2) then
+    arg2 := 0;
+  arg2 := arg2 + 0.2;
+  if arg3 > (PI * 2) then
+    arg3 := 0;
+  arg3 := arg3 + 0.3;
+  Circle.Draw(arg1);
+  Square.Draw(arg2);
+  Ellipse.Draw(arg3);
 end;
 
 end.
