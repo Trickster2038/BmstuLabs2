@@ -34,14 +34,6 @@ object Form1: TForm1
     OnClick = Button1Click
     TabOrder = 0
   end
-  object CheckBox1: TCheckBox
-    Left = 544
-    Height = 19
-    Top = 304
-    Width = 69
-    Caption = 'Continue'
-    TabOrder = 1
-  end
   object Timer1: TTimer
     Enabled = False
     OnTimer = Timer1Timer

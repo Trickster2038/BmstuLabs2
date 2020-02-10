@@ -32,7 +32,10 @@ implementation
 
 var
   circle: TCircle;
+  square: TSquare;
+  ellipse: TEllipse;
   arg: real;
+
 
 {$R *.lfm}
 
@@ -42,7 +45,9 @@ procedure TForm1.Button1Click(Sender: TObject);
 begin
   arg := 0;
   Circle.Init(PaintBox1);
-  Timer1.Enabled := not(Timer1.Enabled);
+  Square.Init(PaintBox2);
+  ellipse.Init(PaintBox3);
+  Timer1.Enabled := not (Timer1.Enabled);
   //test
  { arg := 0;
   while True do
@@ -66,6 +71,8 @@ begin
     arg := 0;
   arg := arg + 0.1;
   Circle.Draw(arg);
+  Square.Draw(arg);
+  Ellipse.Draw(arg);
 end;
 
 end.

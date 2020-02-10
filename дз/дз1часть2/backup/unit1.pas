@@ -13,7 +13,6 @@ type
 
   TForm1 = class(TForm)
     Button1: TButton;
-    CheckBox1: TCheckBox;
     PaintBox1: TPaintBox;
     PaintBox2: TPaintBox;
     PaintBox3: TPaintBox;
@@ -34,6 +33,7 @@ implementation
 var
   circle: TCircle;
   arg: real;
+  square: TSquare;
 
 {$R *.lfm}
 
@@ -43,7 +43,8 @@ procedure TForm1.Button1Click(Sender: TObject);
 begin
   arg := 0;
   Circle.Init(PaintBox1);
-  Timer1.Enabled := not(Timer1.Enabled);
+  Square.Init(PaintBox2);
+  Timer1.Enabled := not (Timer1.Enabled);
   //test
  { arg := 0;
   while True do
@@ -67,6 +68,7 @@ begin
     arg := 0;
   arg := arg + 0.1;
   Circle.Draw(arg);
+  Square.Draw(arg);
 end;
 
 end.
