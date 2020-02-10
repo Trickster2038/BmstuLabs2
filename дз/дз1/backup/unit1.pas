@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  ComCtrls, ColorBox;
+  ComCtrls, ColorBox, Unit2;
 
 type
 
@@ -20,6 +20,9 @@ type
     PaintBox1: TPaintBox;
     UpDown1: TUpDown;
     procedure Button1Click(Sender: TObject);
+    procedure PaintBox1Click(Sender: TObject);
+    procedure PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: integer);
   private
 
   public
@@ -31,14 +34,35 @@ var
 
 implementation
 
+var
+  sq: TSquare;
+
 {$R *.lfm}
 
 { TForm1 }
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  //
+
+end;
+
+procedure TForm1.PaintBox1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.PaintBox1MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: integer);
+var
+  ss, code: integer;
+begin
+  val(Edit1.Text, ss, code);
+  PaintBox1.Canvas.Brush.Color := ColorBox1.Color;
+  if ComboBox1.ItemIndex = 1 then
+  begin
+    sq.Init(X, Y, ss, PaintBox1);
+    sq.Draw(clBlue);
+  end;
 end;
 
 end.
-
