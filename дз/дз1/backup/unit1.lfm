@@ -1,0 +1,67 @@
+object Form1: TForm1
+  Left = 256
+  Height = 418
+  Top = 145
+  Width = 715
+  Caption = 'Form1'
+  ClientHeight = 418
+  ClientWidth = 715
+  LCLVersion = '2.0.6.0'
+  object PaintBox1: TPaintBox
+    Left = 35
+    Height = 350
+    Top = 27
+    Width = 350
+    Color = clWhite
+    ParentColor = False
+  end
+  object Edit1: TEdit
+    Left = 416
+    Height = 23
+    Top = 56
+    Width = 122
+    ReadOnly = True
+    TabOrder = 0
+    Text = '20'
+  end
+  object Label1: TLabel
+    Left = 417
+    Height = 15
+    Top = 30
+    Width = 20
+    Caption = 'Size'
+    ParentColor = False
+  end
+  object UpDown1: TUpDown
+    Left = 538
+    Height = 23
+    Top = 56
+    Width = 17
+    Associate = Edit1
+    Max = 50
+    Min = 7
+    Position = 20
+    TabOrder = 1
+  end
+  object ColorBox1: TColorBox
+    Left = 416
+    Height = 24
+    Top = 128
+    Width = 100
+    ItemHeight = 16
+    TabOrder = 2
+  end
+  object ComboBox1: TComboBox
+    Left = 416
+    Height = 23
+    Top = 192
+    Width = 100
+    ItemHeight = 15
+    Items.Strings = (
+      'circle'
+      'square'
+    )
+    TabOrder = 3
+    Text = 'figure'
+  end
+end
