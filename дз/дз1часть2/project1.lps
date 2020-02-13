@@ -21,7 +21,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="71"/>
         <CursorPos X="9" Y="85"/>
         <UsageCount Value="25"/>
@@ -32,8 +31,10 @@
         <Filename Value="unit2.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Unit2"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="61" Y="102"/>
+        <TopLine Value="95"/>
+        <CursorPos X="23" Y="103"/>
         <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit2>

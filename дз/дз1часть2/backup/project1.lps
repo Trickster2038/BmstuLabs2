@@ -21,8 +21,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <TopLine Value="21"/>
-        <CursorPos X="9" Y="76"/>
+        <TopLine Value="71"/>
+        <CursorPos X="9" Y="85"/>
         <UsageCount Value="25"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -33,7 +33,8 @@
         <UnitName Value="Unit2"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="61" Y="102"/>
+        <TopLine Value="98"/>
+        <CursorPos Y="109"/>
         <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit2>

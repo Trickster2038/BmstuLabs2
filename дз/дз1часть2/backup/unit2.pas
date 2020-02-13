@@ -100,7 +100,13 @@ begin
   //Self.canv.canvas.line(x4, y4, x1, y1);
 
   Self.canv.canvas.pie(xc1 - 40, yc1 - 40, xc1 + 40, yc1 + 40, x3, y3, x2, y2);
-  Self.canv.canvas.pie(xc2 - 60, yc2 - 60, xc2 + 60, yc2 + 60, x1, y1, x4, y4);
+  Self.canv.canvas.pie(xc2 - 40, yc2 - 40, xc2 + 40, yc2 + 40, x1, y1, x4, y4);
+
+  Self.canv.canvas.Brush.Color:=clWhite;
+
+  Self.canv.canvas.ellipse(xc1 - 40 + 3, yc1 - 40 + 3, xc1 + 40 - 3, yc1 + 40 -3);
+  Self.canv.canvas.pie(xc2 - 40, yc2 - 40, xc2 + 40, yc2 + 40, x1, y1, x4, y4);
+
 
   {Self.canv.canvas.line(125 - x1, 125 - y1, x2, y2);
   Self.canv.canvas.line(x1, y1, 125 - x2, 125 - y2);
