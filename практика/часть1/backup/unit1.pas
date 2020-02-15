@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  ExtDlgs;
+  ExtDlgs, Menus, ActnList;
 
 type
 
@@ -27,13 +27,18 @@ type
     Edit2: TEdit;
     Edit3: TEdit;
     Label1: TLabel;
+    Label10: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
     Memo1: TMemo;
     PaintBox1: TPaintBox;
+    Panel1: TPanel;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -322,19 +327,19 @@ begin
     begin
       str(buf.cost, s);
       ss := '';
-      for i := 1 to 5 - length(s) do
+      for i := 1 to 7 - length(s) do
         ss := ss + ' ';
       Form1.Memo1.Text := Form1.Memo1.Text + s + ss + '| ';
 
       str(buf.ram, s);
       ss := '';
-      for i := 1 to 5 - length(s) do
+      for i := 1 to 7 - length(s) do
         ss := ss + ' ';
       Form1.Memo1.Text := Form1.Memo1.Text + s + ss + '| ';
 
       str(buf.hdd, s);
       ss := '';
-      for i := 1 to 6 - length(s) do
+      for i := 1 to 8 - length(s) do
         ss := ss + ' ';
       Form1.Memo1.Text := Form1.Memo1.Text + s + ss + '| ';
       case buf.proc of
