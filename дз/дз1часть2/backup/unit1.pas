@@ -73,7 +73,7 @@ begin
   if arg1 > (PI * 2) then
     arg1 := 0;
   arg1 := arg1 + 0.1;
-  if arg12 > (PI * 2) then
+  if arg2 > (PI * 2) then
     arg2 := 0;
   arg2 := arg2 + 0.2;
   if arg3 > (PI * 2) then

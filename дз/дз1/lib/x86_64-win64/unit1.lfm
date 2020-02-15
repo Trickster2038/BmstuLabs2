@@ -3,7 +3,7 @@ object Form1: TForm1
   Height = 418
   Top = 145
   Width = 715
-  Caption = 'Form1'
+  Caption = 'Graph editor'
   ClientHeight = 418
   ClientWidth = 715
   LCLVersion = '2.0.6.0'
@@ -47,7 +47,7 @@ object Form1: TForm1
   end
   object ColorBox1: TColorBox
     Left = 416
-    Height = 24
+    Height = 22
     Top = 128
     Width = 100
     ItemHeight = 16

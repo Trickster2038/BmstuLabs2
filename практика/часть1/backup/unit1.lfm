@@ -147,9 +147,16 @@ object Form1: TForm1
     Height = 331
     Top = 48
     Width = 272
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Color = clBlack
+    Font.Height = -19
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     Lines.Strings = (
       'Memo1'
     )
+    ParentFont = False
     ScrollBars = ssAutoVertical
     TabOrder = 10
   end

@@ -202,9 +202,32 @@ var
   f2: f;
   endSort: boolean;
 begin
-  assignFile(f1, 'comps.dat');
-  assignFile(f2, 'buf.dat');
 
+  // +refresh
+  AssignFile(f2, 'buffer.dat');
+  Rewrite(f2);
+  AssignFile(f1, 'comps.dat');
+  reset(f1);
+  while not EOF(f1) do
+  begin
+    Read(f1, buf);
+    if buf.exist then
+      Write(f2, buf);
+  end;
+  CloseFile(f1);
+  CloseFile(f2);
+  rewrite(f1);
+  reset(f2);
+  while not EOF(f2) do
+  begin
+    Read(f2, buf);
+    Write(f1, buf);
+  end;
+  closeFile(f1);
+  closeFile(f2);
+  // -refresh
+
+  // + sort
   reset(f1);
   endSort := False;
   while not endSort do
@@ -212,9 +235,8 @@ begin
     endSort := True;
     reset(f1);
     Read(f1, bufOld);
-    while not EOF(f1) do     //correct
+    while not EOF(f1) do
     begin
-      //Read(f1, bufOld);
       Read(f1, buf);
       if bufOld.ram > buf.ram then
       begin
@@ -231,7 +253,7 @@ begin
     end;
     CloseFile(f1);
   end;
-  //close
+  // -sort
 
 
   reset(f1);
@@ -254,10 +276,8 @@ begin
   reset(f1);
   Read(f1, bufOld);
   Read(f1, buf);
-  // ADD SORT
   while not EOF(f1) do
   begin
-    //brush
     PaintBox1.Canvas.Line(
       trunc(k1 * (bufOld.ram / maxRam)),
       PaintBox1.Height - trunc(k2 * (bufOld.cost / maxCost)),
@@ -276,8 +296,6 @@ var
 begin
   assignFile(f1, 'comps.dat');
   reset(f1);
- {Str(,s);
-  Val(s, buf.cost, code);}
   Val(Form1.Edit1.Text, buf.cost, code);
   Val(Form1.Edit2.Text, buf.ram, code);
   Val(Form1.Edit3.Text, buf.hdd, code);
@@ -320,6 +338,8 @@ begin
   CloseFile(f1);
 end;
 
+
+// main out
 procedure TForm1.Button7Click(Sender: TObject);
 var
   s, ss: string;
@@ -337,6 +357,8 @@ begin
       ss := '';
       for i := 1 to 7 - length(s) do
         ss := ss + ' ';
+      //test
+     // str(length(ss),ss);
       Form1.Memo1.Text := Form1.Memo1.Text + s + ss + '| ';
 
       str(buf.ram, s);
@@ -353,7 +375,9 @@ begin
       case buf.proc of
         0: s := 'x32';
         1: s := 'x64';
-        2: s := 'other';
+        2: s := 'other'
+        else
+          s := 'unknown'
       end;
       Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
       Form1.Memo1.Text := Form1.Memo1.Text + #13 + #10;
