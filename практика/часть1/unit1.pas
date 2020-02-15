@@ -93,28 +93,34 @@ begin
   assignFile(f1, 'comps.dat');
   reset(f1);
   Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
-  while not EOF(f1) do
+  val(Form1.Edit1.Text, maxCost, code);
+  // add protection
+  if (code = 0) then
   begin
-    Read(f1, buf);
-    val(Form1.Edit1.Text, maxCost, code);
-    // add protection
-    if (buf.exist) and (buf.cost <= maxCost) then
+    while not EOF(f1) do
     begin
-      str(buf.cost, s);
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-      str(buf.ram, s);
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-      str(buf.hdd, s);
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-      case buf.proc of
-        0: s := 'x32';
-        1: s := 'x64';
-        2: s := 'other';
+      Read(f1, buf);
+
+      if (buf.exist) and (buf.cost <= maxCost) then
+      begin
+        str(buf.cost, s);
+        Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+        str(buf.ram, s);
+        Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+        str(buf.hdd, s);
+        Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+        case buf.proc of
+          0: s := 'x32';
+          1: s := 'x64';
+          2: s := 'other';
+        end;
+        Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+        Form1.Memo1.Text := Form1.Memo1.Text + #13 + #10;
       end;
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-      Form1.Memo1.Text := Form1.Memo1.Text + #13 + #10;
     end;
-  end;
+  end
+  else
+    Form1.Memo1.Text := '(incorrect parametres)';
   CloseFile(f1);
 end;
 

@@ -1,19 +1,28 @@
 object Form1: TForm1
-  Left = 191
-  Height = 523
+  Left = 197
+  Height = 438
   Top = 111
-  Width = 1110
-  Caption = 'Form1'
-  ClientHeight = 523
-  ClientWidth = 1110
+  Width = 1104
+  Caption = 'COMPUTERS DATABASE'
+  ClientHeight = 438
+  ClientWidth = 1104
   OnCreate = FormCreate
   LCLVersion = '2.0.6.0'
+  object Panel2: TPanel
+    Left = 8
+    Height = 120
+    Top = 224
+    Width = 150
+    BevelColor = clAqua
+    Caption = 'Panel2'
+    TabOrder = 15
+  end
   object Panel1: TPanel
-    Left = 13
-    Height = 232
+    Left = 8
+    Height = 187
     Top = 8
-    Width = 145
-    BevelColor = clGray
+    Width = 150
+    BevelColor = clAqua
     Caption = 'Panel1'
     TabOrder = 14
   end
@@ -83,9 +92,9 @@ object Form1: TForm1
     TabOrder = 6
   end
   object Button4: TButton
-    Left = 736
+    Left = 864
     Height = 25
-    Top = 408
+    Top = 400
     Width = 123
     Caption = 'build/refresh graph'
     OnClick = Button4Click
@@ -94,7 +103,7 @@ object Form1: TForm1
   object Button5: TButton
     Left = 16
     Height = 25
-    Top = 256
+    Top = 264
     Width = 123
     Caption = 'add'
     OnClick = Button5Click
@@ -145,10 +154,10 @@ object Form1: TForm1
     TabOrder = 10
   end
   object Button8: TButton
-    Left = 472
+    Left = 8
     Height = 25
-    Top = 400
-    Width = 184
+    Top = 354
+    Width = 131
     Caption = 'clear cash'
     OnClick = Button8Click
     TabOrder = 11
@@ -156,7 +165,7 @@ object Form1: TForm1
   object Button6: TButton
     Left = 16
     Height = 25
-    Top = 288
+    Top = 307
     Width = 123
     Caption = 'quick remove'
     OnClick = Button6Click
@@ -201,13 +210,14 @@ object Form1: TForm1
     ParentFont = False
   end
   object Button9: TButton
-    Left = 16
+    Left = 224
     Height = 25
-    Top = 408
+    Top = 354
     Width = 120
     Caption = 'CLEAR ALL DATA'
     OnClick = Button9Click
     TabOrder = 13
+    Visible = False
   end
   object Label7: TLabel
     Left = 192
@@ -248,5 +258,13 @@ object Form1: TForm1
     Font.Height = -17
     ParentColor = False
     ParentFont = False
+  end
+  object Label11: TLabel
+    Left = 16
+    Height = 15
+    Top = 232
+    Width = 123
+    Caption = 'USES ALL PARAMETRES'
+    ParentColor = False
   end
 end
