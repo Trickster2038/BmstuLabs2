@@ -201,6 +201,7 @@ var
   bufOld: comp;
   f2: f;
   endSort: boolean;
+  s1, s2: string;
 begin
 
   // +refresh
@@ -278,11 +279,37 @@ begin
   Read(f1, buf);
   while not EOF(f1) do
   begin
+    PaintBox1.Canvas.Brush.Color := clRed;
     PaintBox1.Canvas.Line(
       trunc(k1 * (bufOld.ram / maxRam)),
       PaintBox1.Height - trunc(k2 * (bufOld.cost / maxCost)),
       trunc(k1 * (buf.ram / maxRam)),
       PaintBox1.Height - trunc(k2 * (buf.cost / maxCost)));
+    // +axisx
+    PaintBox1.Canvas.Brush.Color := clDefault;
+    str(bufOld.ram, s1);
+    PaintBox1.Canvas.TextOut(trunc(k1 * (bufOld.ram / maxRam)), 330, s1);
+    PaintBox1.Canvas.Brush.Color := clBlack;
+    PaintBox1.Canvas.line(trunc(k1 * (bufOld.ram / maxRam)), 0, trunc(k1 *
+      (bufOld.ram / maxRam)), 327);
+    str(buf.ram, s2);
+    if Buf.ram <> maxRam then
+      PaintBox1.Canvas.TextOut(trunc(k1 * (buf.ram / maxRam)), 330, s2)
+    else
+      PaintBox1.Canvas.TextOut(trunc(k1 * (buf.ram / maxRam)) - 10, 330, s2);
+    // -axisx
+    // +axisy
+    str(bufOld.cost, s1);
+    PaintBox1.Canvas.TextOut(1, PaintBox1.Height - trunc(k2 *
+      (bufOld.cost / maxCost)), s1);
+    str(buf.cost, s2);
+    if Buf.cost <> maxCost then
+      PaintBox1.Canvas.TextOut(1, PaintBox1.Height -
+        trunc(k2 * (bufOld.cost / maxCost)), s2)
+    else
+      PaintBox1.Canvas.TextOut(1, PaintBox1.Height -
+        trunc(k2 * (bufOld.cost / maxCost)) + 10, s2);
+    // -axisy
     bufOld := buf;
     Read(f1, buf);
   end;
@@ -358,7 +385,7 @@ begin
       for i := 1 to 7 - length(s) do
         ss := ss + ' ';
       //test
-      str(length(ss),ss);
+      // str(length(ss),ss);
       Form1.Memo1.Text := Form1.Memo1.Text + s + ss + '| ';
 
       str(buf.ram, s);
