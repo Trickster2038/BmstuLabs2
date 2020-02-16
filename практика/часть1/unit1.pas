@@ -83,6 +83,8 @@ var
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   Form1.Memo1.Text := 'Waiting';
+  PaintBox1.Canvas.Brush.Color := clWhite;
+  PaintBox1.Canvas.Clear;
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -277,48 +279,64 @@ begin
   reset(f1);
   Read(f1, bufOld);
   Read(f1, buf);
+  PaintBox1.Canvas.Pen.Width := 2;
   while not EOF(f1) do
   begin
-    PaintBox1.Canvas.Brush.Color := clRed;
+    //PaintBox1.Canvas.Brush.Color := clRed;
+    PaintBox1.Canvas.Pen.Color := clRed;
     PaintBox1.Canvas.Line(
       trunc(k1 * (bufOld.ram / maxRam)),
       PaintBox1.Height - trunc(k2 * (bufOld.cost / maxCost)),
       trunc(k1 * (buf.ram / maxRam)),
       PaintBox1.Height - trunc(k2 * (buf.cost / maxCost)));
     // +axisx
-    PaintBox1.Canvas.Brush.Color := clDefault;
+    PaintBox1.Canvas.Pen.Color := clWhite;
     str(bufOld.ram, s1);
     PaintBox1.Canvas.TextOut(trunc(k1 * (bufOld.ram / maxRam)), 330, s1);
-    PaintBox1.Canvas.Brush.Color := clBlack;
+    PaintBox1.Canvas.Pen.Color := clBlack;
     PaintBox1.Canvas.line(trunc(k1 * (bufOld.ram / maxRam)), 0,
       trunc(k1 * (bufOld.ram / maxRam)), 327);
     str(buf.ram, s2);
-    PaintBox1.Canvas.Brush.Color := clDefault;
+    PaintBox1.Canvas.Pen.Color := clDefault;
     if Buf.ram <> maxRam then
       PaintBox1.Canvas.TextOut(trunc(k1 * (buf.ram / maxRam)), 330, s2)
     else
       PaintBox1.Canvas.TextOut(trunc(k1 * (buf.ram / maxRam)) - 10, 330, s2);
 
-    PaintBox1.Canvas.Brush.Color := clBlack;
+    PaintBox1.Canvas.Pen.Color := clBlack;
     if Buf.ram <> maxRam then
       PaintBox1.Canvas.line(trunc(k1 * (buf.ram / maxRam)),
         0, trunc(k1 * (buf.ram / maxRam)), 327)
     else
       PaintBox1.Canvas.line(trunc(k1 * (buf.ram / maxRam)) - 10,
         0, trunc(k1 * (buf.ram / maxRam)) - 10, 327);
-    PaintBox1.Canvas.Brush.Color := clDefault;
+    PaintBox1.Canvas.Pen.Color := clDefault;
     // -axisx
     // +axisy
     str(bufOld.cost, s1);
     PaintBox1.Canvas.TextOut(1, PaintBox1.Height - trunc(k2 *
       (bufOld.cost / maxCost)), s1);
     str(buf.cost, s2);
+
+    PaintBox1.Canvas.Pen.Color := clBlack;
+    PaintBox1.Canvas.line(10, PaintBox1.Height - trunc(k2 * (bufOld.cost / maxCost)),
+      350, PaintBox1.Height - trunc(k2 * (bufOld.cost / maxCost)));
+    PaintBox1.Canvas.Pen.Color := clDefault;
     if Buf.cost <> maxCost then
       PaintBox1.Canvas.TextOut(1, PaintBox1.Height -
         trunc(k2 * (buf.cost / maxCost)), s2)
     else
       PaintBox1.Canvas.TextOut(1, PaintBox1.Height -
         trunc(k2 * (buf.cost / maxCost)) + 10, s2);
+
+    PaintBox1.Canvas.Pen.Color := clBlack;
+    if Buf.cost <> maxCost then
+      PaintBox1.Canvas.line(10, PaintBox1.Height - trunc(k2 * (buf.cost / maxCost)),
+        350, PaintBox1.Height - trunc(k2 * (buf.cost / maxCost)))
+    else
+      PaintBox1.Canvas.line(10, PaintBox1.Height - trunc(k2 * (buf.cost / maxCost)) +
+        10, 350, PaintBox1.Height - trunc(k2 * (buf.cost / maxCost)) + 10);
+
     // -axisy
     bufOld := buf;
     Read(f1, buf);
