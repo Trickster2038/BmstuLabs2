@@ -290,13 +290,23 @@ begin
     str(bufOld.ram, s1);
     PaintBox1.Canvas.TextOut(trunc(k1 * (bufOld.ram / maxRam)), 330, s1);
     PaintBox1.Canvas.Brush.Color := clBlack;
-    PaintBox1.Canvas.line(trunc(k1 * (bufOld.ram / maxRam)), 0, trunc(k1 *
-      (bufOld.ram / maxRam)), 327);
+    PaintBox1.Canvas.line(trunc(k1 * (bufOld.ram / maxRam)), 0,
+      trunc(k1 * (bufOld.ram / maxRam)), 327);
     str(buf.ram, s2);
+    PaintBox1.Canvas.Brush.Color := clDefault;
     if Buf.ram <> maxRam then
       PaintBox1.Canvas.TextOut(trunc(k1 * (buf.ram / maxRam)), 330, s2)
     else
       PaintBox1.Canvas.TextOut(trunc(k1 * (buf.ram / maxRam)) - 10, 330, s2);
+
+    PaintBox1.Canvas.Brush.Color := clBlack;
+    if Buf.ram <> maxRam then
+      PaintBox1.Canvas.line(trunc(k1 * (buf.ram / maxRam)),
+        0, trunc(k1 * (buf.ram / maxRam)), 327)
+    else
+      PaintBox1.Canvas.line(trunc(k1 * (buf.ram / maxRam)) - 10,
+        0, trunc(k1 * (buf.ram / maxRam)) - 10, 327);
+    PaintBox1.Canvas.Brush.Color := clDefault;
     // -axisx
     // +axisy
     str(bufOld.cost, s1);
