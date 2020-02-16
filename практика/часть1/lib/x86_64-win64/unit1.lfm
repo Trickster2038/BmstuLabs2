@@ -3,7 +3,6 @@ object Form1: TForm1
   Height = 438
   Top = 111
   Width = 1200
-  AutoSize = True
   Caption = 'COMPUTERS DATABASE'
   ClientHeight = 438
   ClientWidth = 1200
@@ -287,19 +286,29 @@ object Form1: TForm1
     Columns = <    
       item
         Title.Caption = 'Cost'
+        Width = 93
       end    
       item
         Title.Caption = 'RAM'
+        Width = 99
       end    
       item
         Title.Caption = 'Disk'
+        Width = 81
       end    
       item
         Title.Caption = 'Proc'
+        Width = 64
       end>
     FixedCols = 0
     ParentBiDiMode = False
     RowCount = 10
     TabOrder = 16
+    ColWidths = (
+      93
+      99
+      81
+      64
+    )
   end
 end
