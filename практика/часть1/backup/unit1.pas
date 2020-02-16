@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  ExtDlgs, Menus, ActnList;
+  ExtDlgs, Menus, ActnList, Grids;
 
 type
 
@@ -41,6 +41,7 @@ type
     PaintBox1: TPaintBox;
     Panel1: TPanel;
     Panel2: TPanel;
+    StringGrid1: TStringGrid;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -314,8 +315,8 @@ begin
     // -axisx
     // +axisy
     str(bufOld.cost, s1);
-    PaintBox1.Canvas.TextOut(1, PaintBox1.Height - trunc(k2 *
-      (bufOld.cost / maxCost)), s1);
+    PaintBox1.Canvas.TextOut(1, PaintBox1.Height -
+      trunc(k2 * (bufOld.cost / maxCost)), s1);
     str(buf.cost, s2);
 
     PaintBox1.Canvas.Pen.Color := clBlack;
@@ -336,9 +337,6 @@ begin
     else
       PaintBox1.Canvas.line(10, PaintBox1.Height - trunc(k2 * (buf.cost / maxCost)) +
         10, 350, PaintBox1.Height - trunc(k2 * (buf.cost / maxCost)) + 10);
-
-
-
 
     // -axisy
     bufOld := buf;
@@ -400,45 +398,37 @@ end;
 // main out
 procedure TForm1.Button7Click(Sender: TObject);
 var
-  s, ss: string;
+  s1, s2, s3, s4, ss: string;
   i: byte;
 begin
+  Form1.StringGrid1.Clean;
   assignFile(f1, 'comps.dat');
   reset(f1);
-  Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
+ // Form1.Memo1.Text := format('%6s |%6s |%6s |%9s', ['Cost', 'RAM',
+  //  'Disk', 'Processor']) + #13 + #10;
+
   while not EOF(f1) do
   begin
     Read(f1, buf);
     if buf.exist then
     begin
-      str(buf.cost, s);
-      ss := '';
-      for i := 1 to 7 - length(s) do
-        ss := ss + ' ';
-      //test
-      // str(length(ss),ss);
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ss + '| ';
-
-      str(buf.ram, s);
-      ss := '';
-      for i := 1 to 7 - length(s) do
-        ss := ss + ' ';
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ss + '| ';
-
-      str(buf.hdd, s);
-      ss := '';
-      for i := 1 to 8 - length(s) do
-        ss := ss + ' ';
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ss + '| ';
+      str(buf.cost, s1);
+      str(buf.ram, s2);
+      str(buf.hdd, s3);
       case buf.proc of
-        0: s := 'x32';
-        1: s := 'x64';
-        2: s := 'other'
+        0: s4 := 'x32';
+        1: s4 := 'x64';
+        2: s4 := 'other'
         else
-          s := 'unknown'
+          s4 := 'unknown'
       end;
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-      Form1.Memo1.Text := Form1.Memo1.Text + #13 + #10;
+     // Form1.Memo1.Text := Form1.Memo1.Text + format('%6s   |%6s   |%6s |%9s',
+       // [s1, s2, s3, s4]) + #13 + #10;
+      Form1.StringGrid1.InsertColRow(false,filepos(f1));
+      Form1.StringGrid1.Cells[0,filepos(f1)]:=s1;
+       Form1.StringGrid1.Cells[1,filepos(f1)]:=s2;
+        Form1.StringGrid1.Cells[2,filepos(f1)]:=s3;
+         Form1.StringGrid1.Cells[3,filepos(f1)]:=s4;
     end;
   end;
   CloseFile(f1);

@@ -1,11 +1,11 @@
 object Form1: TForm1
-  Left = 197
+  Left = 101
   Height = 438
   Top = 111
-  Width = 1104
+  Width = 1200
   Caption = 'COMPUTERS DATABASE'
   ClientHeight = 438
-  ClientWidth = 1104
+  ClientWidth = 1200
   OnCreate = FormCreate
   LCLVersion = '2.0.6.0'
   object Panel2: TPanel
@@ -30,22 +30,22 @@ object Form1: TForm1
     Left = 192
     Height = 23
     Top = 91
-    Width = 191
+    Width = 168
     TabOrder = 0
   end
   object Edit2: TEdit
     Left = 192
     Height = 23
-    Top = 248
-    Width = 191
+    Top = 216
+    Width = 167
     OnChange = Edit2Change
     TabOrder = 1
   end
   object Edit3: TEdit
-    Left = 193
+    Left = 192
     Height = 23
-    Top = 307
-    Width = 191
+    Top = 272
+    Width = 166
     OnChange = Edit3Change
     TabOrder = 2
   end
@@ -53,7 +53,7 @@ object Form1: TForm1
     Left = 193
     Height = 23
     Top = 133
-    Width = 183
+    Width = 111
     ItemHeight = 15
     Items.Strings = (
       'x32'
@@ -92,9 +92,9 @@ object Form1: TForm1
     TabOrder = 6
   end
   object Button4: TButton
-    Left = 864
+    Left = 944
     Height = 25
-    Top = 400
+    Top = 392
     Width = 123
     Caption = 'build/refresh graph'
     OnClick = Button4Click
@@ -120,15 +120,15 @@ object Form1: TForm1
   object Label2: TLabel
     Left = 194
     Height = 15
-    Top = 214
+    Top = 192
     Width = 26
     Caption = 'RAM'
     ParentColor = False
   end
   object Label3: TLabel
-    Left = 194
+    Left = 192
     Height = 15
-    Top = 290
+    Top = 248
     Width = 55
     Caption = 'Disk space'
     ParentColor = False
@@ -143,10 +143,10 @@ object Form1: TForm1
     TabOrder = 9
   end
   object Memo1: TMemo
-    Left = 416
-    Height = 331
-    Top = 48
-    Width = 272
+    Left = 272
+    Height = 43
+    Top = 384
+    Width = 72
     Font.CharSet = RUSSIAN_CHARSET
     Font.Color = clBlack
     Font.Height = -19
@@ -157,8 +157,10 @@ object Form1: TForm1
       'Memo1'
     )
     ParentFont = False
+    ReadOnly = True
     ScrollBars = ssAutoVertical
     TabOrder = 10
+    Visible = False
   end
   object Button8: TButton
     Left = 8
@@ -179,15 +181,15 @@ object Form1: TForm1
     TabOrder = 12
   end
   object PaintBox1: TPaintBox
-    Left = 736
+    Left = 832
     Height = 350
-    Top = 16
+    Top = 8
     Width = 350
     Color = clWhite
     ParentColor = False
   end
   object Label4: TLabel
-    Left = 896
+    Left = 984
     Height = 20
     Top = 368
     Width = 32
@@ -197,9 +199,9 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 696
+    Left = 792
     Height = 20
-    Top = 175
+    Top = 168
     Width = 29
     Caption = 'Cost'
     Font.Height = 20
@@ -215,6 +217,7 @@ object Form1: TForm1
     Font.Height = -13
     ParentColor = False
     ParentFont = False
+    Visible = False
   end
   object Button9: TButton
     Left = 224
@@ -237,7 +240,7 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label8: TLabel
-    Left = 416
+    Left = 400
     Height = 23
     Top = 8
     Width = 65
@@ -273,5 +276,39 @@ object Form1: TForm1
     Width = 123
     Caption = 'USES ALL PARAMETRES'
     ParentColor = False
+  end
+  object StringGrid1: TStringGrid
+    Left = 392
+    Height = 369
+    Top = 48
+    Width = 344
+    ColCount = 4
+    Columns = <    
+      item
+        Title.Caption = 'Cost'
+        Width = 93
+      end    
+      item
+        Title.Caption = 'RAM'
+        Width = 99
+      end    
+      item
+        Title.Caption = 'Disk'
+        Width = 81
+      end    
+      item
+        Title.Caption = 'Proc'
+        Width = 64
+      end>
+    FixedCols = 0
+    ParentBiDiMode = False
+    RowCount = 10
+    TabOrder = 16
+    ColWidths = (
+      93
+      99
+      81
+      64
+    )
   end
 end
