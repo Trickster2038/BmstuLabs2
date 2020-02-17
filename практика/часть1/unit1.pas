@@ -88,14 +88,16 @@ begin
   PaintBox1.Canvas.Clear;
 end;
 
+//maxCost
 procedure TForm1.Button1Click(Sender: TObject);
 var
-  s: string;
+  s, s1, s2, s3, s4: string;
   maxCost, code: integer;
 begin
   assignFile(f1, 'comps.dat');
   reset(f1);
-  Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
+  //Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
+  Form1.StringGrid1.Clean;
   val(Form1.Edit1.Text, maxCost, code);
   // add protection
   if (code = 0) then
@@ -103,60 +105,88 @@ begin
     while not EOF(f1) do
     begin
       Read(f1, buf);
-
-      if (buf.exist) and (buf.cost <= maxCost) then
+      if (buf.exist) and (buf.cost < maxCost) then
       begin
-        str(buf.cost, s);
-        Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-        str(buf.ram, s);
-        Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-        str(buf.hdd, s);
-        Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
+        str(buf.cost, s1);
+        str(buf.ram, s2);
+        str(buf.hdd, s3);
         case buf.proc of
-          0: s := 'x32';
-          1: s := 'x64';
-          2: s := 'other';
+          0: s4 := 'x32';
+          1: s4 := 'x64';
+          2: s4 := 'other'
+          else
+            s4 := 'unknown'
         end;
-        Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-        Form1.Memo1.Text := Form1.Memo1.Text + #13 + #10;
+        // Form1.Memo1.Text := Form1.Memo1.Text + format('%6s   |%6s   |%6s |%9s',
+        // [s1, s2, s3, s4]) + #13 + #10;
+        if Form1.StringGrid1.RowCount <= filepos(f1) then
+          Form1.StringGrid1.InsertColRow(False, filepos(f1));
+        Form1.StringGrid1.Cells[0, filepos(f1)] := s1;
+        Form1.StringGrid1.Cells[1, filepos(f1)] := s2;
+        Form1.StringGrid1.Cells[2, filepos(f1)] := s3;
+        Form1.StringGrid1.Cells[3, filepos(f1)] := s4;
       end;
     end;
   end
   else
-    Form1.Memo1.Text := '(incorrect parametres)';
+  begin
+    str(code, s1);
+    Form1.StringGrid1.Cells[0, 1] := 'error' + s1;
+
+    //Form1.StringGrid1.Cells[1, 1] := s1;
+  end;
+  //Form1.Memo1.Text := '(incorrect parametres)';
   CloseFile(f1);
 end;
 
+
+//minRam
 procedure TForm1.Button2Click(Sender: TObject);
 var
-  s: string;
+  s, s1, s2, s3, s4: string;
   minRam, code: integer;
 begin
   assignFile(f1, 'comps.dat');
   reset(f1);
-  Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
-  while not EOF(f1) do
+  //Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
+  Form1.StringGrid1.Clean;
+  val(Form1.Edit2.Text, minRam, code);
+  if (code = 0) then
   begin
-    Read(f1, buf);
-    val(Form1.Edit2.Text, minRam, code);
-    // add protection
-    if (buf.exist) and (buf.ram >= minRam) then
+    while not EOF(f1) do
     begin
-      str(buf.cost, s);
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-      str(buf.ram, s);
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-      str(buf.hdd, s);
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-      case buf.proc of
-        0: s := 'x32';
-        1: s := 'x64';
-        2: s := 'other';
+      Read(f1, buf);
+      if (buf.exist) and (buf.ram > minRam) then
+      begin
+        str(buf.cost, s1);
+        str(buf.ram, s2);
+        str(buf.hdd, s3);
+        case buf.proc of
+          0: s4 := 'x32';
+          1: s4 := 'x64';
+          2: s4 := 'other'
+          else
+            s4 := 'unknown'
+        end;
+        // Form1.Memo1.Text := Form1.Memo1.Text + format('%6s   |%6s   |%6s |%9s',
+        // [s1, s2, s3, s4]) + #13 + #10;
+        if Form1.StringGrid1.RowCount <= filepos(f1) then
+          Form1.StringGrid1.InsertColRow(False, filepos(f1));
+        Form1.StringGrid1.Cells[0, filepos(f1)] := s1;
+        Form1.StringGrid1.Cells[1, filepos(f1)] := s2;
+        Form1.StringGrid1.Cells[2, filepos(f1)] := s3;
+        Form1.StringGrid1.Cells[3, filepos(f1)] := s4;
       end;
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-      Form1.Memo1.Text := Form1.Memo1.Text + #13 + #10;
     end;
+  end
+  else
+  begin
+    str(code, s1);
+    Form1.StringGrid1.Cells[0, 1] := 'error' + s1;
+
+    //Form1.StringGrid1.Cells[1, 1] := s1;
   end;
+  //Form1.Memo1.Text := '(incorrect parametres)';
   CloseFile(f1);
 end;
 
@@ -315,8 +345,8 @@ begin
     // -axisx
     // +axisy
     str(bufOld.cost, s1);
-    PaintBox1.Canvas.TextOut(1, PaintBox1.Height - trunc(k2 *
-      (bufOld.cost / maxCost)), s1);
+    PaintBox1.Canvas.TextOut(1, PaintBox1.Height -
+      trunc(k2 * (bufOld.cost / maxCost)), s1);
     str(buf.cost, s2);
 
     PaintBox1.Canvas.Pen.Color := clBlack;
