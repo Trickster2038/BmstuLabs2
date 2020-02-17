@@ -1,4 +1,6 @@
 unit Unit1;
+// filepos(f1) -> i
+// startup graph and out
 
 {$mode objfpc}{$H+}
 
@@ -86,20 +88,23 @@ begin
   Form1.Memo1.Text := 'Waiting';
   PaintBox1.Canvas.Brush.Color := clWhite;
   PaintBox1.Canvas.Clear;
+
+  Form1.Button7Click(Form1);
+  //Form1.Button4Click(Button4);
 end;
 
 //maxCost
 procedure TForm1.Button1Click(Sender: TObject);
 var
   s, s1, s2, s3, s4: string;
-  maxCost, code: integer;
+  maxCost, code, cnt: integer;
 begin
   assignFile(f1, 'comps.dat');
   reset(f1);
   //Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
-  Form1.StringGrid1.Clean;
+  Form1.StringGrid1.Clear;
   val(Form1.Edit1.Text, maxCost, code);
-  // add protection
+  cnt:=-1;
   if (code = 0) then
   begin
     while not EOF(f1) do
@@ -107,6 +112,7 @@ begin
       Read(f1, buf);
       if (buf.exist) and (buf.cost < maxCost) then
       begin
+        cnt:=cnt+1;
         str(buf.cost, s1);
         str(buf.ram, s2);
         str(buf.hdd, s3);
@@ -119,18 +125,19 @@ begin
         end;
         // Form1.Memo1.Text := Form1.Memo1.Text + format('%6s   |%6s   |%6s |%9s',
         // [s1, s2, s3, s4]) + #13 + #10;
-        if Form1.StringGrid1.RowCount <= filepos(f1) then
-          Form1.StringGrid1.InsertColRow(False, filepos(f1));
-        Form1.StringGrid1.Cells[0, filepos(f1)] := s1;
-        Form1.StringGrid1.Cells[1, filepos(f1)] := s2;
-        Form1.StringGrid1.Cells[2, filepos(f1)] := s3;
-        Form1.StringGrid1.Cells[3, filepos(f1)] := s4;
+        if Form1.StringGrid1.RowCount <= cnt then
+          Form1.StringGrid1.InsertColRow(False, cnt);
+        Form1.StringGrid1.Cells[0, cnt] := s1;
+        Form1.StringGrid1.Cells[1, cnt] := s2;
+        Form1.StringGrid1.Cells[2, cnt] := s3;
+        Form1.StringGrid1.Cells[3, cnt] := s4;
       end;
     end;
   end
   else
   begin
     str(code, s1);
+      Form1.StringGrid1.InsertColRow(False, 1);
     Form1.StringGrid1.Cells[0, 1] := 'error' + s1;
 
     //Form1.StringGrid1.Cells[1, 1] := s1;
@@ -256,7 +263,7 @@ var
   bufOld: comp;
   f2: f;
   endSort: boolean;
-  s1, s2: string;
+  s1, s2, sdebug: string;
 begin
 
   // +refresh
@@ -367,8 +374,8 @@ begin
     // -axisx
     // +axisy
     str(bufOld.cost, s1);
-    PaintBox1.Canvas.TextOut(1, PaintBox1.Height -
-      trunc(k2 * (bufOld.cost / maxCost)), s1);
+    PaintBox1.Canvas.TextOut(1, PaintBox1.Height - trunc(k2 *
+      (bufOld.cost / maxCost)), s1);
     str(buf.cost, s2);
 
     PaintBox1.Canvas.Pen.Color := clBlack;
