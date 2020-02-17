@@ -78,7 +78,7 @@ object Form1: TForm1
     Height = 25
     Top = 80
     Width = 123
-    Caption = 'by RAM'
+    Caption = 'by min RAM'
     OnClick = Button2Click
     TabOrder = 5
   end
@@ -87,7 +87,7 @@ object Form1: TForm1
     Height = 25
     Top = 120
     Width = 123
-    Caption = 'by  all characters'
+    Caption = 'by min RAM and disk'
     OnClick = Button3Click
     TabOrder = 6
   end

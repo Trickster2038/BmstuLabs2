@@ -156,7 +156,7 @@ begin
     while not EOF(f1) do
     begin
       Read(f1, buf);
-      if (buf.exist) and (buf.ram < minRam) then
+      if (buf.exist) and (buf.ram > minRam) then
       begin
         str(buf.cost, s1);
         str(buf.ram, s2);
@@ -190,38 +190,60 @@ begin
   CloseFile(f1);
 end;
 
+//allParams
 procedure TForm1.Button3Click(Sender: TObject);
 var
-  s: string;
-  minRam, minDisk, procType, code: integer;
+  s, s1, s2, s3, s4: string;
+  minRam, minDisk, proctype, code, k: integer;
 begin
   assignFile(f1, 'comps.dat');
   reset(f1);
-  Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
-  while not EOF(f1) do
+  //Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
+  Form1.StringGrid1.Clean;
+  k := 0;
+  val(Form1.Edit1.Text, minDisk, code);
+  k := k + code;
+  val(Form1.Edit2.Text, minRam, code);
+  k := k + code;
+  proctype := form1.ComboBox1.ItemIndex;
+
+  if (k = 0) then
   begin
-    Read(f1, buf);
-    val(Form1.Edit3.Text, minDisk, code);
-    val(Form1.Edit2.Text, minRam, code);
-    // add protection
-    if (buf.exist) and (buf.ram >= minRam) and (buf.hdd >= minDisk) and
-      (buf.proc = Form1.ComboBox1.ItemIndex) then
+    while not EOF(f1) do
     begin
-      str(buf.cost, s);
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-      str(buf.ram, s);
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-      str(buf.hdd, s);
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-      case buf.proc of
-        0: s := 'x32';
-        1: s := 'x64';
-        2: s := 'other';
+      Read(f1, buf);
+      if (buf.exist) and (buf.ram > minRam) and (buf.hdd > minDisk) and
+        (buf.proc = proctype) then
+      begin
+        str(buf.cost, s1);
+        str(buf.ram, s2);
+        str(buf.hdd, s3);
+        case buf.proc of
+          0: s4 := 'x32';
+          1: s4 := 'x64';
+          2: s4 := 'other'
+          else
+            s4 := 'unknown'
+        end;
+        // Form1.Memo1.Text := Form1.Memo1.Text + format('%6s   |%6s   |%6s |%9s',
+        // [s1, s2, s3, s4]) + #13 + #10;
+        if Form1.StringGrid1.RowCount <= filepos(f1) then
+          Form1.StringGrid1.InsertColRow(False, filepos(f1));
+        Form1.StringGrid1.Cells[0, filepos(f1)] := s1;
+        Form1.StringGrid1.Cells[1, filepos(f1)] := s2;
+        Form1.StringGrid1.Cells[2, filepos(f1)] := s3;
+        Form1.StringGrid1.Cells[3, filepos(f1)] := s4;
       end;
-      Form1.Memo1.Text := Form1.Memo1.Text + s + ' | ';
-      Form1.Memo1.Text := Form1.Memo1.Text + #13 + #10;
     end;
+  end
+  else
+  begin
+    str(code, s1);
+    Form1.StringGrid1.Cells[0, 1] := 'error' + s1;
+
+    //Form1.StringGrid1.Cells[1, 1] := s1;
   end;
+  //Form1.Memo1.Text := '(incorrect parametres)';
   CloseFile(f1);
 end;
 

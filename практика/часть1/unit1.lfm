@@ -87,7 +87,7 @@ object Form1: TForm1
     Height = 25
     Top = 120
     Width = 123
-    Caption = 'by min RAM and disk'
+    Caption = 'Cost by all params'
     OnClick = Button3Click
     TabOrder = 6
   end
