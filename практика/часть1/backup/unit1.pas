@@ -102,9 +102,9 @@ begin
   assignFile(f1, 'comps.dat');
   reset(f1);
   //Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
-  Form1.StringGrid1.Clear;
+  Form1.StringGrid1.Clean;
   val(Form1.Edit1.Text, maxCost, code);
-  cnt:=-1;
+  cnt := -1;
   if (code = 0) then
   begin
     while not EOF(f1) do
@@ -112,7 +112,7 @@ begin
       Read(f1, buf);
       if (buf.exist) and (buf.cost < maxCost) then
       begin
-        cnt:=cnt+1;
+        cnt := cnt + 1;
         str(buf.cost, s1);
         str(buf.ram, s2);
         str(buf.hdd, s3);
@@ -137,7 +137,7 @@ begin
   else
   begin
     str(code, s1);
-      Form1.StringGrid1.InsertColRow(False, 1);
+    //Form1.StringGrid1.InsertColRow(False, 1);
     Form1.StringGrid1.Cells[0, 1] := 'error' + s1;
 
     //Form1.StringGrid1.Cells[1, 1] := s1;
@@ -151,8 +151,9 @@ end;
 procedure TForm1.Button2Click(Sender: TObject);
 var
   s, s1, s2, s3, s4: string;
-  minRam, code: integer;
+  minRam, code, cnt: integer;
 begin
+  cnt := -1;
   assignFile(f1, 'comps.dat');
   reset(f1);
   //Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
@@ -165,6 +166,7 @@ begin
       Read(f1, buf);
       if (buf.exist) and (buf.ram > minRam) then
       begin
+        cnt := cnt + 1;
         str(buf.cost, s1);
         str(buf.ram, s2);
         str(buf.hdd, s3);
@@ -177,12 +179,12 @@ begin
         end;
         // Form1.Memo1.Text := Form1.Memo1.Text + format('%6s   |%6s   |%6s |%9s',
         // [s1, s2, s3, s4]) + #13 + #10;
-        if Form1.StringGrid1.RowCount <= filepos(f1) then
-          Form1.StringGrid1.InsertColRow(False, filepos(f1));
-        Form1.StringGrid1.Cells[0, filepos(f1)] := s1;
-        Form1.StringGrid1.Cells[1, filepos(f1)] := s2;
-        Form1.StringGrid1.Cells[2, filepos(f1)] := s3;
-        Form1.StringGrid1.Cells[3, filepos(f1)] := s4;
+        if Form1.StringGrid1.RowCount <= cnt then
+          Form1.StringGrid1.InsertColRow(False, cnt);
+        Form1.StringGrid1.Cells[0, cnt] := s1;
+        Form1.StringGrid1.Cells[1, cnt] := s2;
+        Form1.StringGrid1.Cells[2, cnt] := s3;
+        Form1.StringGrid1.Cells[3, cnt] := s4;
       end;
     end;
   end
@@ -201,8 +203,9 @@ end;
 procedure TForm1.Button3Click(Sender: TObject);
 var
   s, s1, s2, s3, s4: string;
-  minRam, minDisk, proctype, code, k: integer;
+  minRam, minDisk, proctype, code, k, cnt: integer;
 begin
+  cnt := -1;
   assignFile(f1, 'comps.dat');
   reset(f1);
   //Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
@@ -222,6 +225,7 @@ begin
       if (buf.exist) and (buf.ram > minRam) and (buf.hdd > minDisk) and
         (buf.proc = proctype) then
       begin
+        cnt := cnt + 1;
         str(buf.cost, s1);
         str(buf.ram, s2);
         str(buf.hdd, s3);
@@ -234,12 +238,12 @@ begin
         end;
         // Form1.Memo1.Text := Form1.Memo1.Text + format('%6s   |%6s   |%6s |%9s',
         // [s1, s2, s3, s4]) + #13 + #10;
-        if Form1.StringGrid1.RowCount <= filepos(f1) then
-          Form1.StringGrid1.InsertColRow(False, filepos(f1));
-        Form1.StringGrid1.Cells[0, filepos(f1)] := s1;
-        Form1.StringGrid1.Cells[1, filepos(f1)] := s2;
-        Form1.StringGrid1.Cells[2, filepos(f1)] := s3;
-        Form1.StringGrid1.Cells[3, filepos(f1)] := s4;
+        if Form1.StringGrid1.RowCount <= cnt then
+          Form1.StringGrid1.InsertColRow(False, cnt);
+        Form1.StringGrid1.Cells[0, cnt] := s1;
+        Form1.StringGrid1.Cells[1, cnt] := s2;
+        Form1.StringGrid1.Cells[2, cnt] := s3;
+        Form1.StringGrid1.Cells[3, cnt] := s4;
       end;
     end;
   end
@@ -374,8 +378,8 @@ begin
     // -axisx
     // +axisy
     str(bufOld.cost, s1);
-    PaintBox1.Canvas.TextOut(1, PaintBox1.Height - trunc(k2 *
-      (bufOld.cost / maxCost)), s1);
+    PaintBox1.Canvas.TextOut(1, PaintBox1.Height -
+      trunc(k2 * (bufOld.cost / maxCost)), s1);
     str(buf.cost, s2);
 
     PaintBox1.Canvas.Pen.Color := clBlack;
@@ -427,7 +431,7 @@ procedure TForm1.Button6Click(Sender: TObject);
 var
   // rename vars
   s: string;
-  minRam, minDisk, procType, code: integer;
+  cnt, minRam, minDisk, procType, code: integer;
 begin
   assignFile(f1, 'comps.dat');
   reset(f1);
@@ -459,7 +463,9 @@ procedure TForm1.Button7Click(Sender: TObject);
 var
   s1, s2, s3, s4, ss: string;
   i: byte;
+  cnt: integer;
 begin
+  cnt := -1;
   Form1.StringGrid1.Clean;
   assignFile(f1, 'comps.dat');
   reset(f1);
@@ -471,6 +477,7 @@ begin
     Read(f1, buf);
     if buf.exist then
     begin
+      cnt := cnt + 1;
       str(buf.cost, s1);
       str(buf.ram, s2);
       str(buf.hdd, s3);
@@ -483,12 +490,12 @@ begin
       end;
       // Form1.Memo1.Text := Form1.Memo1.Text + format('%6s   |%6s   |%6s |%9s',
       // [s1, s2, s3, s4]) + #13 + #10;
-      if Form1.StringGrid1.RowCount <= filepos(f1) then
-        Form1.StringGrid1.InsertColRow(False, filepos(f1));
-      Form1.StringGrid1.Cells[0, filepos(f1)] := s1;
-      Form1.StringGrid1.Cells[1, filepos(f1)] := s2;
-      Form1.StringGrid1.Cells[2, filepos(f1)] := s3;
-      Form1.StringGrid1.Cells[3, filepos(f1)] := s4;
+      if Form1.StringGrid1.RowCount <= cnt then
+        Form1.StringGrid1.InsertColRow(False, cnt);
+      Form1.StringGrid1.Cells[0, cnt] := s1;
+      Form1.StringGrid1.Cells[1, cnt] := s2;
+      Form1.StringGrid1.Cells[2, cnt] := s3;
+      Form1.StringGrid1.Cells[3, cnt] := s4;
     end;
   end;
   CloseFile(f1);

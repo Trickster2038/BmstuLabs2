@@ -211,7 +211,7 @@ begin
   //Form1.Memo1.Text := 'cost | ram | disk | proc' + #13 + #10;
   Form1.StringGrid1.Clean;
   k := 0;
-  val(Form1.Edit1.Text, minDisk, code);
+  val(Form1.Edit3.Text, minDisk, code);
   k := k + code;
   val(Form1.Edit2.Text, minRam, code);
   k := k + code;
@@ -378,8 +378,8 @@ begin
     // -axisx
     // +axisy
     str(bufOld.cost, s1);
-    PaintBox1.Canvas.TextOut(1, PaintBox1.Height -
-      trunc(k2 * (bufOld.cost / maxCost)), s1);
+    PaintBox1.Canvas.TextOut(1, PaintBox1.Height - trunc(k2 *
+      (bufOld.cost / maxCost)), s1);
     str(buf.cost, s2);
 
     PaintBox1.Canvas.Pen.Color := clBlack;
