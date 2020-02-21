@@ -1,0 +1,3 @@
+﻿  ConsoleApplication1.cpp
+F:\@BMSTU\BmstuLabs2\labs\lab5_unfinished\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(33,11): warning C4477: "printf": в строке форматирования "%X" требуется аргумент типа "unsigned int", но вариативный аргумент "1" имеет тип "char *"
+  ConsoleApplication1.vcxproj -> F:\@BMSTU\BmstuLabs2\labs\lab5_unfinished\ConsoleApplication1\ConsoleApplication1\Debug\ConsoleApplication1.exe
