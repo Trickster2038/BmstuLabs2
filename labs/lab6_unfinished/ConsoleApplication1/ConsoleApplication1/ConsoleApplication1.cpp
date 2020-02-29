@@ -25,23 +25,29 @@ int main()
 	int i = -1;
 	while (inp[i] != '\0') {
 		int j = 0;
-		i++;
+		while (inp[i] == ' ') {
+			i++;
+		}
 		while ((inp[i] != '\0') && (inp[i] != ' ')) {
 			buf[j] = inp[i];
 			i++;
 			j++;
 		}
-		buf[j] = '\0';
-		puts(buf);
-		puts("|");
+		if (inp[i] != '\0') {
+			buf[j] = '\0';
+			puts(buf);
+			//puts("|");
 
-		q = new zap;
-		(*q).content = buf;
-		(*p).next = q;
-		
-		p = (*p).next;
-		puts((*p).content);
-		(*p).next = NULL;
+			q = new zap;
+			(*q).content = buf;
+			(*p).next = q;
+			printf("addr1: %x \n", p);
+
+			p = (*p).next;
+			puts((*p).content);
+			printf("addr2: %x \n", p);
+			(*p).next = NULL;
+		}
 	}
 	/*cut = strstr(cut, " ") + 1;
 	puts(cut);
@@ -56,6 +62,7 @@ int main()
 	p = st;
 
 	while (p != NULL) {
+		printf("addr3: %x \n", p);
 		puts((*p).content);
 		p = (*p).next;
 

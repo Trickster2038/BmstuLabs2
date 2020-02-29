@@ -1,2 +1,5 @@
 ﻿  ConsoleApplication1.cpp
-  ConsoleApplication1.vcxproj -> F:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\Debug\ConsoleApplication1.exe
+G:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(44,11): warning C4477: "printf": в строке форматирования "%x" требуется аргумент типа "unsigned int", но вариативный аргумент "1" имеет тип "main::zap *"
+G:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(48,11): warning C4477: "printf": в строке форматирования "%x" требуется аргумент типа "unsigned int", но вариативный аргумент "1" имеет тип "main::zap *"
+G:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(65,10): warning C4477: "printf": в строке форматирования "%x" требуется аргумент типа "unsigned int", но вариативный аргумент "1" имеет тип "main::zap *"
+  ConsoleApplication1.vcxproj -> G:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\Debug\ConsoleApplication1.exe
