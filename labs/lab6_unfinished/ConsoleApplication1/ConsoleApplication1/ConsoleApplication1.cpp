@@ -44,8 +44,8 @@ int main()
 			//*buff = *buf;
 			q = new zap;
 			//(*q).content = new char;
-			strcpy_s((*q).content,50, buff);
-			//(*q).content = buf;
+			//strcpy_s((*q).content,1, buff);
+			(*q).content = buff;
 			(*p).next = q;
 			printf("addr1: %x \n", p);
 
