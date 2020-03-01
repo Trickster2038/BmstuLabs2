@@ -1,7 +1,4 @@
 ﻿  ConsoleApplication1.cpp
-F:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(50,11): warning C4477: "printf": в строке форматирования "%x" требуется аргумент типа "unsigned int", но вариативный аргумент "1" имеет тип "main::zap *"
-F:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(54,11): warning C4477: "printf": в строке форматирования "%x" требуется аргумент типа "unsigned int", но вариативный аргумент "1" имеет тип "main::zap *"
-F:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(79,10): warning C4477: "printf": в строке форматирования "%x" требуется аргумент типа "unsigned int", но вариативный аргумент "1" имеет тип "main::zap *"
-F:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(79,10): warning C4477: "printf": в строке форматирования "%x" требуется аргумент типа "unsigned int", но вариативный аргумент "2" имеет тип "char **"
-F:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(17,16): warning C4101: buf: неиспользованная локальная переменная
+F:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(19,16): warning C4101: buf: неиспользованная локальная переменная
+F:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(19,27): warning C4101: cut: неиспользованная локальная переменная
   ConsoleApplication1.vcxproj -> F:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\Debug\ConsoleApplication1.exe

@@ -6,81 +6,101 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <set>
+using namespace std;
 
 int main()
 {
+	set <char> gl = { 'a','e','y','u','i','o','j' };
 	struct zap {
 		char* content;
 		zap* next;
 	};
-	char inp[50], buf[50], * cut, *buff;
-	zap* q, * p, * st;
+	char inp[50], buf[50], * cut, * buff;
+	zap* q, * p, * st, * st1;
+	bool exist = false;
 
 	st = new zap;
 	p = st;
 	(*p).next = NULL;
+	puts(">>Input string: ");
 	gets_s(inp);
-	cut = inp;
 	int i = 0;
 	while (inp[i] != '\0') {
 		int j = 0;
-		//(buf[0]) = new char[50];
+
 		buff = new char[50];
+		// ATTENTION - if you forgot it - all list's elements will be addresed to one string
+
 		while (inp[i] == ' ') {
 			i++;
 		}
 		while ((inp[i] != '\0') && (inp[i] != ' ')) {
-			//buf[j] = inp[i];
 			*(buff + j) = inp[i];
 			i++;
 			j++;
 		}
-			//buf[j] = '\0';
 		*(buff + j) = '\0';
-			puts(buff);
-			//puts("|");
-			//buff = new char[50];
-			//*buff = *buf;
-			q = new zap;
-			//(*q).content = new char;
-			//strcpy_s((*q).content,1, buff);
-			(*q).content = buff;
-			(*p).next = q;
-			printf("addr1: %x \n", p);
-
-			p = (*p).next;
-			puts((*p).content);
-			printf("addr2: %x \n", p);
-			(*p).next = NULL;
-			
-			/*
-			(*p).content = buf;
-			(*p).next = new zap;
-			p = (*p).next;
-			(*p).content = NULL;
-			*/
-		
-		
+		q = new zap;
+		(*q).content = buff;
+		(*p).next = q;
+		p = (*p).next;
+		(*p).next = NULL;
 	}
-	/*cut = strstr(cut, " ") + 1;
-	puts(cut);
-	q = new zap;
-	*/
-	//(inp[0]) = *cut;
+
 
 	if (((*st).next != NULL)) {
-		st = (*st).next;
+
+		puts(">>>list1:");
 	}
+	else {
+		puts(">>>list1 is empty");
+	}
+
+	st = (*st).next;
 
 	p = st;
 
+
+
 	while (p != NULL) {
-		printf("addr3: %x addrf: %x \n", p, &((*p).content));
 		puts((*p).content);
 		p = (*p).next;
+	}
+
+	p = st;
+	//q = NULL; 
+	//st1 = NULL; 
+	st1 = new zap;
+	(*st1).next = NULL;
+	q = st1;
+	while (p != NULL) {
+		if (gl.count((*p).content[0]) != 0) {
+			q->next = new zap;
+			q->next->content = p->content;
+			q = q->next;
+			q->next = NULL;
+		}
+		p = p->next;
 
 	}
+
+	if (((*st1).next != NULL)) {
+		puts(">>>list2:");
+	}
+	else {
+		puts(">>>list2 is empty");
+	}
+	st1 = (*st1).next;
+
+	p = st1;
+
+	while (p != NULL) {
+		puts((*p).content);
+		p = (*p).next;
+	}
+
+
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
