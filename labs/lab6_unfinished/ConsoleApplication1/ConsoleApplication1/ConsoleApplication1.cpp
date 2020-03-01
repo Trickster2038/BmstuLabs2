@@ -14,7 +14,7 @@ int main()
 		char* content;
 		zap* next;
 	};
-	char inp[50], buf[50], * cut;
+	char inp[50], buf[50], * cut, *buff;
 	zap* q, * p, * st;
 
 	st = new zap;
@@ -22,24 +22,30 @@ int main()
 	(*p).next = NULL;
 	gets_s(inp);
 	cut = inp;
-	int i = -1;
+	int i = 0;
 	while (inp[i] != '\0') {
 		int j = 0;
+		//(buf[0]) = new char[50];
+		buff = new char[50];
 		while (inp[i] == ' ') {
 			i++;
 		}
 		while ((inp[i] != '\0') && (inp[i] != ' ')) {
-			buf[j] = inp[i];
+			//buf[j] = inp[i];
+			*(buff + j) = inp[i];
 			i++;
 			j++;
 		}
-		if (inp[i] != '\0') {
-			buf[j] = '\0';
-			puts(buf);
+			//buf[j] = '\0';
+		*(buff + j) = '\0';
+			puts(buff);
 			//puts("|");
-
+			//buff = new char[50];
+			//*buff = *buf;
 			q = new zap;
-			(*q).content = buf;
+			//(*q).content = new char;
+			strcpy_s((*q).content,50, buff);
+			//(*q).content = buf;
 			(*p).next = q;
 			printf("addr1: %x \n", p);
 
@@ -47,7 +53,15 @@ int main()
 			puts((*p).content);
 			printf("addr2: %x \n", p);
 			(*p).next = NULL;
-		}
+			
+			/*
+			(*p).content = buf;
+			(*p).next = new zap;
+			p = (*p).next;
+			(*p).content = NULL;
+			*/
+		
+		
 	}
 	/*cut = strstr(cut, " ") + 1;
 	puts(cut);
@@ -62,7 +76,7 @@ int main()
 	p = st;
 
 	while (p != NULL) {
-		printf("addr3: %x \n", p);
+		printf("addr3: %x addrf: %x \n", p, &((*p).content));
 		puts((*p).content);
 		p = (*p).next;
 
