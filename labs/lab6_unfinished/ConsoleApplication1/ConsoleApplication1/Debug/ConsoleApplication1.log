@@ -1,4 +1,0 @@
-﻿  ConsoleApplication1.cpp
-F:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(19,16): warning C4101: buf: неиспользованная локальная переменная
-F:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(19,27): warning C4101: cut: неиспользованная локальная переменная
-  ConsoleApplication1.vcxproj -> F:\@BMSTU\BmstuLabs2\labs\lab6_unfinished\ConsoleApplication1\Debug\ConsoleApplication1.exe
