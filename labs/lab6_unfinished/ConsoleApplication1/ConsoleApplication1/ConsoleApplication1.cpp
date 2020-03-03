@@ -100,7 +100,22 @@ int main()
 		p = (*p).next;
 	}
 
+	p = st;
+	   
+	while (p != NULL) {
+		q = p;
+		p = (*p).next;
+		delete[](*q).content;
+		delete q;
+	}
 
+	p = st1;
+
+	while (p != NULL) {
+		q = p;
+		p = (*p).next;
+		delete q;
+	}
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
