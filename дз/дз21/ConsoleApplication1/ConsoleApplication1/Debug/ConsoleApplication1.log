@@ -1,0 +1,4 @@
+﻿  ConsoleApplication1.cpp
+F:\@BMSTU\BmstuLabs2\дз\дз21\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(21,21): warning C4018: <=: несоответствие типов со знаком и без знака
+F:\@BMSTU\BmstuLabs2\дз\дз21\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(27,21): warning C4018: <=: несоответствие типов со знаком и без знака
+  ConsoleApplication1.vcxproj -> F:\@BMSTU\BmstuLabs2\дз\дз21\ConsoleApplication1\Debug\ConsoleApplication1.exe

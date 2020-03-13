@@ -1,0 +1,6 @@
+﻿  ConsoleApplication1.cpp
+F:\@BMSTU\BmstuLabs2\практика\часть2\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(16,6): warning C4101: m: неиспользованная локальная переменная
+F:\@BMSTU\BmstuLabs2\практика\часть2\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(17,12): warning C4101: y: неиспользованная локальная переменная
+F:\@BMSTU\BmstuLabs2\практика\часть2\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(27,14): warning C4101: excep: неиспользованная локальная переменная
+F:\@BMSTU\BmstuLabs2\практика\часть2\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(54,14): warning C4101: excep: неиспользованная локальная переменная
+  ConsoleApplication1.vcxproj -> F:\@BMSTU\BmstuLabs2\практика\часть2\ConsoleApplication1\Debug\ConsoleApplication1.exe
