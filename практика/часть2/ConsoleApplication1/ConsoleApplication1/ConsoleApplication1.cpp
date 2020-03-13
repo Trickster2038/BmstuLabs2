@@ -8,7 +8,6 @@ inline int vMulti(int* ins);
 inline int vSum(int* ins);
 inline int vSub(int* ins);
 inline int vEq(int* ins);
-inline int vGood(int* a1, int* b1);
 
 int main()
 {
@@ -20,14 +19,10 @@ int main()
 	puts("WARNING: X been set to [0,0] as default");
 	while (n != 0) {
 		puts("\n Choose action: \n 0) Exit \n 1) Input/reset \n 2) summation + \n 3) subtrction - \n 4) scalar * \n 5) equalence =");
-		scanf_s("%d", &n);
 		try {
-			vGood(&n, &n);
-		}
-		catch (int excep) {
-			puts("Anomaly input, please retry \n");
-		}
-		try {
+			if (scanf_s("%d", &n) != 1) {
+				throw 0;
+			}
 			switch (n) {
 			case 0:
 				puts("exit...");
@@ -52,7 +47,8 @@ int main()
 			}
 		}
 		catch (int excep) {
-			puts("Anomaly input, please retry \n");
+			printf("Anomaly input, please retry (code %d) \n Error finishing... \n", excep);
+			n = 0;
 		}
 		printf("Current X = [%d, %d] \n", x[0], x[1]);
 	}
@@ -61,8 +57,9 @@ int main()
 inline int vInput(int* ins) {
 	int a, b;
 	puts("Enter coords in formar %d %d");
-	scanf_s("%d %d", &a, &b);
-	vGood(&a, &b);
+	if (scanf_s("%d %d", &a, &b) != 2) {
+		throw 1;
+	}
 	*ins = a;
 	*(ins + 1) = b;
 	return 0;
@@ -71,8 +68,9 @@ inline int vInput(int* ins) {
 inline int vMulti(int* ins) {
 	int a;
 	puts("Enter num to multiply");
-	scanf_s("%d", &a);
-	vGood(&a, &a);
+	if (scanf_s("%d", &a) != 1) {
+		throw 1;
+	}
 	*ins = a * (*ins);
 	*(ins + 1) = a * (*(ins + 1));
 	return 0;
@@ -81,8 +79,9 @@ inline int vMulti(int* ins) {
 inline int vSum(int* ins) {
 	int a, b;
 	puts("Enter coords in formar %d %d");
-	scanf_s("%d %d", &a, &b);
-	vGood(&a, &b);
+	if (scanf_s("%d %d", &a, &b) != 2) {
+		throw 1;
+	}
 	*ins = a + (*ins);
 	*(ins + 1) = b + (*(ins + 1));
 	return 0;
@@ -91,30 +90,25 @@ inline int vSum(int* ins) {
 inline int vSub(int* ins) {
 	int a, b;
 	puts("Enter coords in formar %d %d");
-	scanf_s("%d %d", &a, &b);
-	vGood(&a, &b);
-	*ins = - a + (*ins);
-	*(ins + 1) = - b + (*(ins + 1));
+	if (scanf_s("%d %d", &a, &b) != 2) {
+		throw 1;
+	}
+	*ins = -a + (*ins);
+	*(ins + 1) = -b + (*(ins + 1));
 	return 0;
 }
 
 inline int vEq(int* ins) {
 	int a, b;
 	puts("Enter coords in formar %d %d");
-	scanf_s("%d %d", &a, &b);
-	vGood(&a, &b);
-	if ((*ins == a)&&(*(ins+1)==b)) {
+	if (scanf_s("%d %d", &a, &b) != 2) {
+		throw 1;
+	}
+	if ((*ins == a) && (*(ins + 1) == b)) {
 		puts("Vectors equal \n");
 	}
 	else {
 		puts("Vectors dont equal \n");
-	}
-	return 0;
-}
-
-inline int vGood(int *a1, int *b1) {
-	if ((*a1 > 10000) || (*a1 < -10000) || (*b1 > 10000) || (*b1 < -10000)) {
-		throw(-1);
 	}
 	return 0;
 }
