@@ -6,6 +6,8 @@
 
 using namespace std;
 
+int checker(char* sa, bool* cond);
+
 int main()
 {
 	puts("Enter number");
@@ -18,23 +20,24 @@ int main()
 		_itoa_s(i, s1, 10, 10);
 		_itoa_s(i * i, s2, 40, 10);
 		bool fl = true;
-		for (int j = 0; j <= strlen(s1) / 2; j++) {
-			//printf("%c %c \n", *(s1+j), *(s1 + strlen(s1) - j -1)); 
-			if (*(s1 + j) != *(s1 + strlen(s1) - j - 1)) {
-				fl = false;
-			}
-		}
-		for (int j = 0; j <= strlen(s2) / 2; j++) {
-			if (*(s2 + j) != *(s2 + strlen(s2) - j - 1)) {
-				fl = false;
-			}
-		}
+		checker(s1, &fl);
+		checker(s2, &fl);
 		if (fl) {
 			printf("nice num: %d %d \n", i, i * i);
 		}
 	}
 	delete[] s1;
 	delete[] s2;
+}
+
+int checker(char *sa, bool * cond)
+{
+	for (int j = 0; j <= strlen(sa) / 2; j++) {
+		if (*(sa + j) != *(sa + strlen(sa) - j - 1)) {
+			*cond = false;
+		}
+	}
+	return 0;
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

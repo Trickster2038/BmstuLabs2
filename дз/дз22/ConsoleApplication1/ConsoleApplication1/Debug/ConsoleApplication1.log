@@ -1,4 +1,1 @@
-﻿  ConsoleApplication1.cpp
-F:\@BMSTU\BmstuLabs2\дз\дз22\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(17,23): warning C4474: "scanf_s" : для строки формата передано слишком много аргументов
-F:\@BMSTU\BmstuLabs2\дз\дз22\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(17,23): message : заполнители и их параметры ожидают переменное число аргументов в количестве 1, но было предоставлено 2
-  ConsoleApplication1.vcxproj -> F:\@BMSTU\BmstuLabs2\дз\дз22\ConsoleApplication1\Debug\ConsoleApplication1.exe
+﻿  ConsoleApplication1.vcxproj -> C:\Users\Trickster2038\Desktop\BmstuLabs2\дз\дз22\ConsoleApplication1\Debug\ConsoleApplication1.exe

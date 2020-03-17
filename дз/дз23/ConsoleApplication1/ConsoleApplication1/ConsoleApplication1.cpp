@@ -17,15 +17,11 @@ int main()
 	for (int i = 0; i < strlen(s1); i++) {
 		putc(s1[i], f);
 	}
-	//putc(EOF, f);
 	puts("Enter string 2");
 	s1 = gets_s(s1, 50);
 	for (int i = 0; i < strlen(s1); i++) {
 		putc(s1[i], g);
 	}
-	//putc(EOF, g);
-	//eofs
-	// may be close - open
 	rewind(f);
 	rewind(g);
 
@@ -53,7 +49,6 @@ int main()
 	else {
 		puts("Files matches");
 	}
-	//close close delete
 	fclose(f);
 	fclose(g);
 	delete[] s1;

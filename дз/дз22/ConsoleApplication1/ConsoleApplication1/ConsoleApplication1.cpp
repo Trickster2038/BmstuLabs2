@@ -36,12 +36,6 @@ int main()
            if ((p == NULL) || (q == NULL)) {
                 break;
             }
-            /*buf = new char[30];
-            strcpy_s(buf,30, q);
-            strcat_s(buf,30, " ");
-            strcat_s(buf,30, q);
-            strcat_s(buf, 30, " ");*/
-            //strcat_s(buf, 30,tr);
             st = tr;
             printf_s("%s %s ", q, q);
         }
