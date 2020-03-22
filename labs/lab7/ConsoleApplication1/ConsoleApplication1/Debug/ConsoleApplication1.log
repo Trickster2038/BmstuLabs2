@@ -1,3 +1,1 @@
-﻿  ConsoleApplication1.cpp
-C:\Users\Trickster2038\Desktop\BmstuLabs2\labs\lab7_unfinished\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(22,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
-  ConsoleApplication1.vcxproj -> C:\Users\Trickster2038\Desktop\BmstuLabs2\labs\lab7_unfinished\ConsoleApplication1\Debug\ConsoleApplication1.exe
+﻿  ConsoleApplication1.vcxproj -> C:\Users\Trickster2038\Desktop\BmstuLabs2\labs\lab7\ConsoleApplication1\Debug\ConsoleApplication1.exe
