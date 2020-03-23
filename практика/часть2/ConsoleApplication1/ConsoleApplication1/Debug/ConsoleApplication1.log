@@ -1,4 +1,5 @@
 ﻿  ConsoleApplication1.cpp
-F:\@BMSTU\BmstuLabs2\практика\часть2\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(15,6): warning C4101: m: неиспользованная локальная переменная
-F:\@BMSTU\BmstuLabs2\практика\часть2\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(16,12): warning C4101: y: неиспользованная локальная переменная
-  ConsoleApplication1.vcxproj -> F:\@BMSTU\BmstuLabs2\практика\часть2\ConsoleApplication1\Debug\ConsoleApplication1.exe
+C:\Users\Trickster2038\Desktop\BmstuLabs2\практика\часть2\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(15,6): warning C4101: m: неиспользованная локальная переменная
+C:\Users\Trickster2038\Desktop\BmstuLabs2\практика\часть2\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(16,12): warning C4101: y: неиспользованная локальная переменная
+  LINK : не найден или не выполнена сборка C:\Users\Trickster2038\Desktop\BmstuLabs2\практика\часть2\ConsoleApplication1\Debug\ConsoleApplication1.exe при последней инкрементной компоновке; выполняется полная компоновка
+  ConsoleApplication1.vcxproj -> C:\Users\Trickster2038\Desktop\BmstuLabs2\практика\часть2\ConsoleApplication1\Debug\ConsoleApplication1.exe
