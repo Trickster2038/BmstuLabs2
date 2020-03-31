@@ -29,9 +29,9 @@ int main(int argc, char *argv[])
 	spinBox->setValue(35);  
 	QPushButton * btn = new QPushButton("Exit", hbox ); 
 //***************************************************************************   
-QHBoxLayout *layout = new QHBoxLayout; 
+//QHBoxLayout *layout = new QHBoxLayout; 
 // выравнивание по горизонтали   
-//QVBoxLayout *layout = new QVBoxLayout; 
+QVBoxLayout *layout = new QVBoxLayout; 
 // выравнивание по вертикали 
 	layout->setContentsMargins(5,5,5,5);  
 // устанавливаем внешние границы   
