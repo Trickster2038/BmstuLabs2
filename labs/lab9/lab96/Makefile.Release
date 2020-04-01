@@ -274,6 +274,7 @@ release\moc_back.cpp: back.h \
 		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtWidgets\qtextedit.h \
 		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
 		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtGui\qtextdocument.h \
+		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtCore\QString \
 		release\moc_predefs.h \
 		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\bin\moc.exe
 	C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/Trickster2038/Desktop/BmstuLabs2/labs/lab9/lab96/release/moc_predefs.h -IC:/Qt/Qt5.14.0/5.14.0/msvc2017_64/mkspecs/win32-msvc -IC:/Users/Trickster2038/Desktop/BmstuLabs2/labs/lab9/lab96 -IC:/Users/Trickster2038/Desktop/BmstuLabs2/labs/lab9/lab96 -IC:/Qt/Qt5.14.0/5.14.0/msvc2017_64/include -IC:/Qt/Qt5.14.0/5.14.0/msvc2017_64/include/QtWidgets -IC:/Qt/Qt5.14.0/5.14.0/msvc2017_64/include/QtGui -IC:/Qt/Qt5.14.0/5.14.0/msvc2017_64/include/QtANGLE -IC:/Qt/Qt5.14.0/5.14.0/msvc2017_64/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt" back.h -o release\moc_back.cpp
@@ -417,11 +418,12 @@ release\back.obj: back.cpp C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtWidgets\Q
 		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtGui\qtextcursor.h \
 		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtGui\qtextformat.h \
 		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtGui\qpen.h \
+		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtWidgets\QLineEdit \
+		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtWidgets\qlineedit.h \
+		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtCore\QString \
 		back.h \
 		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtWidgets\QDialog \
 		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtWidgets\qdialog.h \
-		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtWidgets\QLineEdit \
-		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtWidgets\qlineedit.h \
 		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtCore\QSignalMapper \
 		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtCore\qsignalmapper.h
 
@@ -550,7 +552,8 @@ release\front.obj: front.cpp C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtWidgets
 		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtWidgets\QTextEdit \
 		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtWidgets\qtextedit.h \
 		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
-		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtGui\qtextdocument.h
+		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtGui\qtextdocument.h \
+		C:\Qt\Qt5.14.0\5.14.0\msvc2017_64\include\QtCore\QString
 
 release\moc_back.obj: release\moc_back.cpp 
 

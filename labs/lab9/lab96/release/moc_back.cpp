@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_FormDialog_t {
-    QByteArrayData data[7];
-    char stringdata0[45];
+    QByteArrayData data[4];
+    char stringdata0[26];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,14 +35,10 @@ static const qt_meta_stringdata_FormDialog_t qt_meta_stringdata_FormDialog = {
 QT_MOC_LITERAL(0, 0, 10), // "FormDialog"
 QT_MOC_LITERAL(1, 11, 7), // "swapper"
 QT_MOC_LITERAL(2, 19, 0), // ""
-QT_MOC_LITERAL(3, 20, 5), // "bool&"
-QT_MOC_LITERAL(4, 26, 6), // "caseId"
-QT_MOC_LITERAL(5, 33, 5), // "outId"
-QT_MOC_LITERAL(6, 39, 5) // "newQs"
+QT_MOC_LITERAL(3, 20, 5) // "newQs"
 
     },
-    "FormDialog\0swapper\0\0bool&\0caseId\0outId\0"
-    "newQs"
+    "FormDialog\0swapper\0\0newQs"
 };
 #undef QT_MOC_LITERAL
 
@@ -60,12 +56,12 @@ static const uint qt_meta_data_FormDialog[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    2,   24,    2, 0x08 /* Private */,
-       6,    1,   29,    2, 0x08 /* Private */,
+       1,    0,   24,    2, 0x08 /* Private */,
+       3,    0,   25,    2, 0x08 /* Private */,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3,    4,    5,
-    QMetaType::Void, 0x80000000 | 3,    5,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -76,11 +72,12 @@ void FormDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<FormDialog *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->swapper((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
-        case 1: _t->newQs((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 0: _t->swapper(); break;
+        case 1: _t->newQs(); break;
         default: ;
         }
     }
+    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject FormDialog::staticMetaObject = { {

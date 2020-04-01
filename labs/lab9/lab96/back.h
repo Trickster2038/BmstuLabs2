@@ -4,6 +4,7 @@
 #include <QLineEdit>
 #include <QSignalMapper>
 #include <QTextEdit>
+#include <QString>
 /// Класс, реализующий редактор
 class FormDialog: public QDialog
 {
@@ -19,7 +20,7 @@ protected:
 
     
 private slots:
-    void swapper(bool& caseId, bool& outId);
-    void newQs(bool& outId);
+    void swapper();
+    void newQs();
 };
 #endif
