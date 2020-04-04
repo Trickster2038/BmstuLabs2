@@ -11,13 +11,17 @@ void CQueue::add(char arg) {
 void CQueue::rm() {
 	queuef.pop_back();
 }
-void CQueue::setlng() {
+// void CQueue::setlng() {
+// 	lng = 0;
+// 	for (vector<char>::iterator i = queuef.begin(); i != queuef.end(); ++i) {
+// 		lng++;
+// 	}
+// }
+int CQueue::getlng() {
 	lng = 0;
 	for (vector<char>::iterator i = queuef.begin(); i != queuef.end(); ++i) {
 		lng++;
 	}
-}
-int CQueue::getlng() {
 	return lng;
 }
 void CQueue::reset() {

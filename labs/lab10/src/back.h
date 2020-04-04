@@ -22,5 +22,8 @@ protected:
     
 private slots:
     void pusher();
+    void poper();
+    void sorter();
+    void outer();
 };
 #endif

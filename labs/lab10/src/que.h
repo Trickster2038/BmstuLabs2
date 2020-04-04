@@ -10,7 +10,7 @@ protected:
 public:
 	void add(char arg);
 	void rm();
-	void setlng(); 
+	//void setlng(); 
 	int getlng();
 	void reset();
 	char gett();

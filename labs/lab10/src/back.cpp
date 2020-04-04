@@ -27,9 +27,9 @@ FormDialog::FormDialog(QWidget * parent){
 
 
 	connect(button1, SIGNAL(clicked()), this, SLOT(pusher()));
-	// connect(button2, SIGNAL(clicked()), this, SLOT(poper()));
-	// connect(button3, SIGNAL(clicked()), this, SLOT(sorter()));
-	// connect(button4, SIGNAL(clicked()), this, SLOT(outer()));
+	connect(button2, SIGNAL(clicked()), this, SLOT(poper()));
+	connect(button3, SIGNAL(clicked()), this, SLOT(sorter()));
+	connect(button4, SIGNAL(clicked()), this, SLOT(outer()));
 	//connect(lineEdit1, SIGNAL(textEdited(QString)), this, SLOT(newQs()));
 	mainLayout->addWidget(lineEdit1);
 	mainLayout->addWidget(button1);
@@ -51,4 +51,35 @@ void FormDialog::pusher(){
     QByteArray a= str.toUtf8(); // to....
     char* d=  a.data();
 	qobj.add(*d);
+
+	//QString str2(QChar(*d));
+	field1->append("added " + QString::fromLocal8Bit(d,1));
+	//field1->append(str2);
+};
+
+void FormDialog::poper(){
+	if(qobj.getlng()>0){
+		qobj.rm();
+	field1->append("last elem removed");
+	}
+	else{
+		field1->append("queue is empty");
+	}
+};
+
+void FormDialog::sorter(){
+	qobj.sort();
+	field1->append("sorted");
+};
+
+void FormDialog::outer(){
+	qobj.reset();
+	field1->setText("");
+	field1->append("Queue:");
+	for(int i=0; i < qobj.getlng(); i++){
+		char *ch;
+		*ch = qobj.gett();
+		field1->append(QString::fromLocal8Bit(ch,1));
+		//field1->append("^");
+	}
 };
