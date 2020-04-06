@@ -9,9 +9,9 @@ setFixedSize(QSize(800,300));
 f1 = new CCircle();
 f2 = new CSquare();
 f3 = new CEllipse();
-f1->sett(125,125,10);
-f2->sett(375,125,5);
-f3->sett(625,125,9);
+f1->sett(125,125,1);
+f2->sett(375,125,3);
+f3->sett(625,125,1);
 }
  
 void CDrawer::paintEvent(QPaintEvent *e) {
@@ -20,6 +20,8 @@ void CDrawer::paintEvent(QPaintEvent *e) {
   
   QPainter qp(this);
   drawFigure(&qp,0);
+  drawFigure(&qp,1);
+  drawFigure(&qp,2);
 }
  
 void CDrawer::drawFigure(QPainter *qp, int id) {

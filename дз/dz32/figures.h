@@ -3,6 +3,7 @@
 #include <QPainter>
 #include <QRectF>
 #include <QWidget>
+#include <cmath> 
  
 class CFigure{
   protected:

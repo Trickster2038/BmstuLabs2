@@ -66,7 +66,7 @@ FormDialog::FormDialog(QWidget * parent){
 void FormDialog::pusher(){
 	if(startb)
 	{
-		timer1->start(1000);
+		timer1->start(150);
 	}
 	else{
 		timer1->stop();
