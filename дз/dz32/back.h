@@ -5,8 +5,7 @@
 #include <QSignalMapper>
 #include <QTextEdit>
 #include <QString>
-//#include "que.h"
-/// Класс, реализующий редактор
+
 class FormDialog: public QDialog
 {
     Q_OBJECT
@@ -21,9 +20,6 @@ protected:
 
     
 private slots:
-    void pusher();
-    void poper();
-    void sorter();
-    void outer();
+    void starter();
 };
 #endif

@@ -23,7 +23,7 @@ void CFigure::redraw(QPainter *qpp){
 }
 
 void CCircle::redraw(QPainter *qpp){
- QRectF rect(xc - 125, yc - 125, xc + 125, yc + 125);
+ QRectF rect(xc - 110, yc - 110, xc + 110, yc + 110);
  qpp->eraseRect(rect);
  qpp->drawPie(rect, t*16 , 270 *16);
  tick();
