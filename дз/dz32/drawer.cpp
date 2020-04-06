@@ -5,11 +5,11 @@
 
 CDrawer::CDrawer(QWidget *parent): QWidget(parent)
 { 
-setFixedSize(QSize(300,800));
+setFixedSize(QSize(800,300));
 f1 = new CCircle();
 f2 = new CSquare();
 f3 = new CEllipse();
-f1->sett(125,125,1);
+f1->sett(125,125,10);
 f2->sett(375,125,5);
 f3->sett(625,125,9);
 }

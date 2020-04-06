@@ -6,6 +6,7 @@
 #include <QString>
 #include <QFrame>
 #include <QPoint>
+#include <QTimer>
 #include "back.h"
 #include "drawer.h"
 #include "que.h"
@@ -16,8 +17,11 @@ using namespace std;
 //void FormDialog::newQs(bool& outId);
 //void FormDialog::swapper(bool& caseId, bool& outId);
 CSmartQ qobj;
+bool startb = true;
+QTimer *timer1;
 
 FormDialog::FormDialog(QWidget * parent){
+	timer1 = new QTimer(this);
 	QVBoxLayout *mainLayout = new QVBoxLayout();
 	lineEdit1 = new QLineEdit();
 	//QPainter painter1(this);
@@ -40,7 +44,8 @@ FormDialog::FormDialog(QWidget * parent){
 	connect(button1, SIGNAL(clicked()), this, SLOT(pusher()));
 	connect(button2, SIGNAL(clicked()), this, SLOT(poper()));
 	connect(button3, SIGNAL(clicked()), this, SLOT(sorter()));
-	connect(button4, SIGNAL(clicked()), this, SLOT(outer()));
+	connect(button4, SIGNAL(clicked()), this, SLOT(repaint()));
+	connect(timer1, SIGNAL(timeout()), this, SLOT(repaint()));
 	//connect(lineEdit1, SIGNAL(textEdited(QString)), this, SLOT(newQs()));
 	mainLayout->addWidget(lineEdit1);
 	mainLayout->addWidget(drawer1);
@@ -59,14 +64,14 @@ FormDialog::FormDialog(QWidget * parent){
 // };
 
 void FormDialog::pusher(){
-	QString str = lineEdit1->text();
-    QByteArray a= str.toUtf8(); // to....
-    char* d=  a.data();
-	qobj.add(*d);
-
-	//QString str2(QChar(*d));
-	field1->append("added " + QString::fromLocal8Bit(d,1));
-	//field1->append(str2);
+	if(startb)
+	{
+		timer1->start(1000);
+	}
+	else{
+		timer1->stop();
+	}
+	startb = !(startb);
 };
 
 void FormDialog::poper(){

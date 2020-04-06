@@ -7,7 +7,7 @@
 class CFigure{
   protected:
   	int xc, yc, t, dt;
-    void tick(int dt);
+    void tick();
  
   public:
     void sett(int a1, int a2, int a3);

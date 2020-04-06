@@ -13,7 +13,7 @@ CFigure::CFigure(){
 	dt = 0;
 }
 
-void CFigure::tick(int dt){
+void CFigure::tick(){
 	t += dt;
 }
 
@@ -23,8 +23,9 @@ void CFigure::redraw(QPainter *qpp){
 
 void CCircle::redraw(QPainter *qpp){
  QRectF rect(xc - 125, yc - 125, xc + 125, yc + 125);
- qpp->drawPie(rect, t * 16, t + 90*16);
- tick(1);
+ qpp->eraseRect(rect);
+ qpp->drawPie(rect, t*16 , 270 *16);
+ tick();
 }
 
 void CSquare::redraw(QPainter *qpp){
