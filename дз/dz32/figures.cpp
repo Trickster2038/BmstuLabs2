@@ -65,11 +65,8 @@ void CEllipse::redraw(QPainter *qpp){
   xc2 = int((x4 + x1) / 2);
   yc2 = int((y4 + y1) / 2);
 
-  //Self.canv.canvas.line(xc1, yc1, xc2, yc2);
   qpp->drawLine(x1, y1, x2, y2);
-  //Self.canv.canvas.line(x2, y2, x3, y3);
   qpp->drawLine(x3, y3, x4, y4);
-  //Self.canv.canvas.line(x4, y4, x1, y1);
 
   qpp->drawArc(xc1 - 40, yc1 - 40, 80, 80, (-t*180*16)/3.14 - 45*16, +180*16);
   qpp->drawArc(xc2 - 40, yc2 - 40, 80, 80, (-t*180*16)/3.14- 45*16, -180*16);

@@ -14,7 +14,6 @@ class CFigure{
     void sett(int a1, int a2, int a3);
     CFigure();
     void redraw(QPainter *qpp);
-    //void paintEvent(QPaintEvent *qpp);
 };
 
 class CCircle: public CFigure{

@@ -13,12 +13,6 @@ public:
     FormDialog( QWidget * parent = 0);
     virtual ~FormDialog(){};
 
-protected:    
-    QLineEdit *lineEdit1;
-    QTextEdit *field1;
-    bool lower, isOut;
-
-    
 private slots:
     void starter();
 };

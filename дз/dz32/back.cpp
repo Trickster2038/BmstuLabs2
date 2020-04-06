@@ -21,17 +21,13 @@ QTimer *timer1;
 FormDialog::FormDialog(QWidget * parent){
 	timer1 = new QTimer(this);
 	QVBoxLayout *mainLayout = new QVBoxLayout();
-	lineEdit1 = new QLineEdit();
 	QPushButton *button1 = new QPushButton("Start / Stop");
 	CDrawer* drawer1 = new CDrawer(this);
-	field1 = new QTextEdit();
-	field1->setReadOnly(true);
 	bool lower = true, isOut = false;
 
 
 	connect(button1, SIGNAL(clicked()), this, SLOT(starter()));
 	connect(timer1, SIGNAL(timeout()), this, SLOT(repaint()));
-	mainLayout->addWidget(lineEdit1);
 	mainLayout->addWidget(drawer1);
 	mainLayout->addWidget(button1);
 	setLayout(mainLayout);

@@ -28,9 +28,6 @@ void CDrawer::drawFigure(QPainter *qp, int id) {
   
   QPen pen(Qt::black, 2, Qt::SolidLine);  
   qp->setPen(pen);
-  // CCircle f1(125,125,1);
-  // CSquare f2(375,125,5);
-  // CEllipse f3(625,125,9);
   switch(id){
     case 0:
       f1->redraw(qp);
