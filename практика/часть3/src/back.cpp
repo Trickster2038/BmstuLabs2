@@ -26,7 +26,14 @@ FormDialog::FormDialog(QWidget * parent){
 	QLabel *l12 = new QLabel("Uses all params", this);
 	QLabel *l21 = new QLabel("Filter parametres", this);
 	QLabel *l22 = new QLabel("(also used as input)", this);
+	QLabel *l23 = new QLabel("Cost", this);
+	QLabel *l24 = new QLabel("Proc type", this);
+	QLabel *l25 = new QLabel("Ram", this);
+	QLabel *l26 = new QLabel("Disk Space", this);
 	QComboBox *combo1 = new QComboBox(this);
+	combo1->addItem("x32");
+	combo1->addItem("x64");
+	combo1->addItem("other");
 	QSpinBox *spin1 = new QSpinBox(this);
 	spin1->setMaximum(10000);
 	spin1->setMinimum(0);
@@ -67,9 +74,13 @@ FormDialog::FormDialog(QWidget * parent){
 
 layout2->addWidget(l21);
 layout2->addWidget(l22);
+layout2->addWidget(l23);
 layout2->addWidget(spin1);
+layout2->addWidget(l24);
 layout2->addWidget(combo1);
+layout2->addWidget(l25);
 layout2->addWidget(spin2);
+layout2->addWidget(l26);
 layout2->addWidget(spin3);
 
 	mainLayout->addLayout(layout1);
