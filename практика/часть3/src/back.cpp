@@ -3,18 +3,18 @@
 #include <QHBoxLayout>
 #include <QTextEdit>
 #include <QLineEdit>
-#include <iostream>
+//#include <iostream>
 #include <QString>
-#include <QComboBox>
-#include <QSpinBox>
 #include <QLabel>
 #include "back.h"
+#include "fwork.h"
 //#include "que.h"
 using namespace std;
 
 //void FormDialog::newQs(bool& outId);
 //void FormDialog::swapper(bool& caseId, bool& outId);
 //CSmartQ qobj;
+CBase oper;
 
 FormDialog::FormDialog(QWidget * parent){
 	QHBoxLayout *mainLayout = new QHBoxLayout();
@@ -54,11 +54,13 @@ FormDialog::FormDialog(QWidget * parent){
 	//field1->setReadOnly(true);
 	//QString str1;
 	bool lower = true, isOut = false;
+	int i1;
+	i1 = spin1->value();
 	
 
 
-	// connect(button1, SIGNAL(clicked()), this, SLOT(pusher()));
-	// connect(button2, SIGNAL(clicked()), this, SLOT(poper()));
+	connect(buttonM1, SIGNAL(clicked()), this, SLOT(adder()));
+	connect(spin1, SIGNAL((valueChanged(int))), this, SLOT(i1refr(int x)));
 	// connect(button3, SIGNAL(clicked()), this, SLOT(sorter()));
 	// connect(button4, SIGNAL(clicked()), this, SLOT(outer()));
 	//connect(lineEdit1, SIGNAL(textEdited(QString)), this, SLOT(newQs()));
@@ -88,7 +90,18 @@ layout2->addWidget(spin3);
 	//mainLayout->addWidget(layout1);
 	//mainLayout->addWidget(field1);
 	setLayout(mainLayout);
+
 };
+
+void FormDialog::i1refr(int x){
+	i1 = x;
+}
+
+void FormDialog::adder(){
+	//spin1->setValue(2038);
+	i1 = spin1->value();
+	oper.push(1,i1,6,9);
+}
 
 // void FormDialog::newQs(){
 // 	//isOut = false;
