@@ -30,17 +30,17 @@ FormDialog::FormDialog(QWidget * parent){
 	QLabel *l24 = new QLabel("Proc type", this);
 	QLabel *l25 = new QLabel("Ram", this);
 	QLabel *l26 = new QLabel("Disk Space", this);
-	QComboBox *combo1 = new QComboBox(this);
+	combo1 = new QComboBox(this);
 	combo1->addItem("x32");
 	combo1->addItem("x64");
 	combo1->addItem("other");
-	QSpinBox *spin1 = new QSpinBox(this);
+	spin1 = new QSpinBox(this);
 	spin1->setMaximum(10000);
 	spin1->setMinimum(0);
-	QSpinBox *spin2 = new QSpinBox(this);
+	spin2 = new QSpinBox(this);
 	spin2->setMaximum(10000);
 	spin2->setMinimum(0);
-	QSpinBox *spin3 = new QSpinBox(this);
+	spin3 = new QSpinBox(this);
 	spin3->setMaximum(10000);
 	spin3->setMinimum(0);
 	//lineEdit1 = new QLineEdit();
@@ -60,7 +60,7 @@ FormDialog::FormDialog(QWidget * parent){
 
 
 	connect(buttonM1, SIGNAL(clicked()), this, SLOT(adder()));
-	connect(spin1, SIGNAL((valueChanged(int))), this, SLOT(i1refr(int x)));
+	//connect(spin1, SIGNAL((valueChanged(int x))), this, SLOT(i1refr(int x)));
 	// connect(button3, SIGNAL(clicked()), this, SLOT(sorter()));
 	// connect(button4, SIGNAL(clicked()), this, SLOT(outer()));
 	//connect(lineEdit1, SIGNAL(textEdited(QString)), this, SLOT(newQs()));
@@ -95,12 +95,13 @@ layout2->addWidget(spin3);
 
 void FormDialog::i1refr(int x){
 	i1 = x;
+	spin2->setValue(x);
 }
 
 void FormDialog::adder(){
 	//spin1->setValue(2038);
-	i1 = spin1->value();
-	oper.push(1,i1,6,9);
+	//i1 = spin1->value();
+	oper.push(combo1->currentIndex(),spin2->value(),spin3->value(),spin1->value());
 }
 
 // void FormDialog::newQs(){
