@@ -48,7 +48,7 @@ struct comp {
             *a4 = buf.cost;
         }
         //fclose(f);
-        return feof(f1);
+        return !(feof(f1));
     }
     void CBase::getmm(int* a1, int* a2, int* a3, int* a4) {
         int minc, maxc, minh, maxh, p1, p2, p3, p4;

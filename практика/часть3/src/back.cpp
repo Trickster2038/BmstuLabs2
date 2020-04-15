@@ -30,7 +30,11 @@ FormDialog::FormDialog(QWidget * parent){
 	QLabel *l24 = new QLabel("Proc type", this);
 	QLabel *l25 = new QLabel("Ram", this);
 	QLabel *l26 = new QLabel("Disk Space", this);
+
 	table = new QTableWidget(0,4,this);
+	QStringList headers = { "proc type","ram", "disk space", "cost"};
+	table->setHorizontalHeaderLabels(headers);
+
 	combo1 = new QComboBox(this);
 	combo1->addItem("x32");
 	combo1->addItem("x64");
@@ -108,11 +112,57 @@ void FormDialog::adder(){
 }
 
 void FormDialog::outer(){
+table->setRowCount(0);
+	//clear table?
+table->setColumnCount(4);
+FILE* f;
+bool safety;
+int k1,k2,k3,k4;
+fopen_s(&f,"base.dat", "r+b");
+safety = oper.gett(f,&k1,&k2,&k3,&k4);
+while(safety){
 table->setRowCount(table->rowCount() + 1);
+
+
 QTableWidgetItem* item = new QTableWidgetItem;
-    item->setText("proc type");
+QString s;
+switch(k1){
+	case 0:
+	s = "x32";
+	break;
+	case 1:
+	s = "x64";
+	break;
+	case 2:
+	s = "other";
+	break;
+}
+    item->setText(s);
     item->setTextAlignment(Qt::AlignCenter);
     table->setItem(table->rowCount() - 1, 0, item);
+
+item = new QTableWidgetItem;
+s = QString::number(k2);
+    item->setText(s);
+    item->setTextAlignment(Qt::AlignCenter);
+    table->setItem(table->rowCount() - 1, 1, item);
+
+item = new QTableWidgetItem;
+s = QString::number(k3);
+    item->setText(s);
+    item->setTextAlignment(Qt::AlignCenter);
+    table->setItem(table->rowCount() - 1, 2, item);
+
+item = new QTableWidgetItem;
+s = QString::number(k4);
+    item->setText(s);
+    item->setTextAlignment(Qt::AlignCenter);
+    table->setItem(table->rowCount() - 1, 3, item);
+//delete item;
+safety = oper.gett(f,&k1,&k2,&k3,&k4);
+}
+
+fclose(f);
 }
 
 
