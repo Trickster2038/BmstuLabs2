@@ -7,6 +7,8 @@
 #include <QString>
 #include <QComboBox>
 #include <QSpinBox>
+#include <QTableWidget>
+#include <QTableWidgetItem>
 
 //#include "que.h"
 /// Класс, реализующий редактор
@@ -19,6 +21,7 @@ public:
 
 protected:    
 	int i1;
+	QTableWidget *table;
 	QSpinBox *spin1,*spin2,*spin3;
 	QComboBox *combo1;
     //QLineEdit *lineEdit1;
@@ -29,6 +32,7 @@ protected:
 private slots:
     void adder();
     void i1refr(int x);
+    void outer();
 //     void poper();
 //     void sorter();
 //     void outer();

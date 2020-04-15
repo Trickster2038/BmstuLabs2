@@ -30,6 +30,7 @@ FormDialog::FormDialog(QWidget * parent){
 	QLabel *l24 = new QLabel("Proc type", this);
 	QLabel *l25 = new QLabel("Ram", this);
 	QLabel *l26 = new QLabel("Disk Space", this);
+	table = new QTableWidget(0,4,this);
 	combo1 = new QComboBox(this);
 	combo1->addItem("x32");
 	combo1->addItem("x64");
@@ -60,6 +61,7 @@ FormDialog::FormDialog(QWidget * parent){
 
 
 	connect(buttonM1, SIGNAL(clicked()), this, SLOT(adder()));
+	connect(buttonS4, SIGNAL(clicked()), this, SLOT(outer()));
 	//connect(spin1, SIGNAL((valueChanged(int x))), this, SLOT(i1refr(int x)));
 	// connect(button3, SIGNAL(clicked()), this, SLOT(sorter()));
 	// connect(button4, SIGNAL(clicked()), this, SLOT(outer()));
@@ -87,6 +89,7 @@ layout2->addWidget(spin3);
 
 	mainLayout->addLayout(layout1);
 	mainLayout->addLayout(layout2);
+	mainLayout->addWidget(table);
 	//mainLayout->addWidget(layout1);
 	//mainLayout->addWidget(field1);
 	setLayout(mainLayout);
@@ -103,6 +106,15 @@ void FormDialog::adder(){
 	//i1 = spin1->value();
 	oper.push(combo1->currentIndex(),spin2->value(),spin3->value(),spin1->value());
 }
+
+void FormDialog::outer(){
+table->setRowCount(table->rowCount() + 1);
+QTableWidgetItem* item = new QTableWidgetItem;
+    item->setText("proc type");
+    item->setTextAlignment(Qt::AlignCenter);
+    table->setItem(table->rowCount() - 1, 0, item);
+}
+
 
 // void FormDialog::newQs(){
 // 	//isOut = false;
