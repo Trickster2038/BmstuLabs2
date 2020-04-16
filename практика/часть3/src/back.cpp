@@ -11,7 +11,8 @@
 //#include "que.h"
 #define GWIDTH 720
 #define GHEIGHT 480
-#define GBORDER 10
+#define GBORDER 30
+#define GTB 12
 using namespace std;
 
 //void FormDialog::newQs(bool& outId);
@@ -55,9 +56,30 @@ void CDrawer::builder(QPainter *qp){
 	fopen_s(&f,"base.dat", "r+b");
 	rewind(f);
 	safety = oper.gett(f,&k1,&k2,&x1,&y1);
+	qp->setFont(QFont("Arial", 14));
+	qp->drawText(int(GWIDTH/2.0) , GHEIGHT - (GBORDER/3.0) + GTB, "Disk space");
+	qp->drawText(int(GTB/3.0), int(GHEIGHT/2.0) , "Cost");
+	qp->setFont(QFont("Arial", 8));
+
 	while(safety){
 		safety = oper.gett(f,&k1,&k2,&x2,&y2);
+		pen.setStyle(Qt::SolidLine);
+		pen.setWidth(3);
+		pen.setColor(Qt::red);
+		qp->setPen(pen);
 		qp->drawLine(GBORDER + int(kx*x1), GHEIGHT - int(ky*y1) - GBORDER,GBORDER + int(kx*x2),GHEIGHT - int(ky*y2) - GBORDER);
+		pen.setStyle(Qt::DashLine);
+		pen.setWidth(1);
+		pen.setColor(Qt::black);
+		qp->setPen(pen);
+		qp->drawLine(GBORDER + int(kx*x1), GHEIGHT - GBORDER,GBORDER + int(kx*x1),GBORDER);
+		qp->drawLine(GBORDER + int(kx*x2), GHEIGHT - GBORDER,GBORDER + int(kx*x2),GBORDER);
+		qp->drawLine(GBORDER , GHEIGHT - int(ky*y1) - GBORDER,GWIDTH - GBORDER,GHEIGHT - int(ky*y1) - GBORDER);
+		qp->drawLine(GBORDER , GHEIGHT - int(ky*y2) - GBORDER,GWIDTH - GBORDER,GHEIGHT - int(ky*y2) - GBORDER);
+		qp->drawText(GBORDER + int(kx*x1) - GTB, GHEIGHT - GBORDER, QString::number(x1));
+		qp->drawText(GBORDER + int(kx*x2) - GTB, GHEIGHT - GBORDER, QString::number(x2));
+		qp->drawText(GBORDER , GHEIGHT - int(ky*y1) - GBORDER - GTB, QString::number(y1));
+		qp->drawText(GBORDER , GHEIGHT - int(ky*y2) - GBORDER - GTB, QString::number(y2));
  		//qp.drawLine(5,5,80,80);
 		x1 = x2;
 		y1 = y2;
