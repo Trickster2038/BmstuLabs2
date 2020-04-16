@@ -66,10 +66,10 @@ void CDrawer::builder(QPainter *qp){
 }
 
 GraphDialog::GraphDialog(QWidget * parent){
-	drawer1 = new CDrawer(this);
-	QHBoxLayout *mainLayout = new QHBoxLayout();
-	mainLayout->addWidget(drawer1);
-	setLayout(mainLayout);
+	drawer2 = new CDrawer(this);
+	QHBoxLayout *mainLayout2 = new QHBoxLayout();
+	mainLayout2 ->addWidget(drawer2);
+	setLayout(mainLayout2);
 	}
 
 
@@ -126,7 +126,7 @@ FormDialog::FormDialog(QWidget * parent){
 
 	connect(buttonM1, SIGNAL(clicked()), this, SLOT(adder()));
 	connect(buttonS4, SIGNAL(clicked()), this, SLOT(outer()));
-	connect(buttonS5, SIGNAL(clicked()), this, SLOT(repaint()));
+	connect(buttonS5, SIGNAL(clicked()), this, SLOT(grapher()));
 	//connect(spin1, SIGNAL((valueChanged(int x))), this, SLOT(i1refr(int x)));
 	// connect(button3, SIGNAL(clicked()), this, SLOT(sorter()));
 	// connect(button4, SIGNAL(clicked()), this, SLOT(outer()));
@@ -231,9 +231,10 @@ void FormDialog::outer(){
 }
 
 void FormDialog::grapher(){
+	dialog1 = new GraphDialog(this);
+dialog1->show();
 this->drawer1->repaint();
 //dialog1 = new GraphDialog(this);
-dialog1.show();
 }
 // 	QPen pen(Qt::black, 2, Qt::SolidLine);  
 //   qp.setPen(pen);

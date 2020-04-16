@@ -10,6 +10,7 @@
 #include <QTableWidget>
 #include <QTableWidgetItem>
 #include <QPainter>
+#include <QWidget>
 
 //#include "que.h"
 /// Класс, реализующий редактор
@@ -24,7 +25,7 @@ protected:
 	void builder(QPainter *qp);
 };
 
-class GraphDialog: public QDialog
+class GraphDialog: public QWidget
 {
     Q_OBJECT
 public:
@@ -33,7 +34,7 @@ public:
 
 protected:    
 	int i1;
-	CDrawer *drawer1;
+	CDrawer *drawer2;
 
     
 private slots:
@@ -43,11 +44,11 @@ private slots:
 //     void outer();
 };
 
-class FormDialog: public QDialog
+class FormDialog: public QWidget
 {
     Q_OBJECT
 public:
-	GraphDialog dialog1;
+	GraphDialog *dialog1;
     FormDialog( QWidget * parent = 0);
     virtual ~FormDialog(){};
 
