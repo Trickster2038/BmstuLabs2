@@ -31,29 +31,31 @@ void CDrawer::paintEvent(QPaintEvent *e) {
 	Q_UNUSED(e);
 	QPainter qp(this);
 	QPen pen(Qt::black, 2, Qt::SolidLine);  
+	 QRectF rect(0, 0, GWIDTH, GHEIGHT);
+ qp.eraseRect(rect);
    qp.setPen(pen);
-   qp.drawLine(5,5,80,80);
+   //qp.drawLine(5,5,80,80);
 
-   // // 	int mnx,mxx,mny,mxy;
-// // 	oper.getmm(&mny,&mxy,&mnx,&mxx);
-// // 	float kx,ky;
-// // 	kx = 1.0 * (GWIDTH-GBORDER) / (mxx - mnx);
-// // 	ky = 1.0 * (GHEIGHT-GBORDER) / (mxy - mny);
+   	int mnx,mxx,mny,mxy;
+	oper.getmm(&mny,&mxy,&mnx,&mxx);
+	float kx,ky;
+	kx = 1.0 * (GWIDTH-GBORDER) / (mxx - mnx);
+	ky = 1.0 * (GHEIGHT-GBORDER) / (mxy - mny);
 
-// // //sorter();
+//sorter();
 
-// // 	FILE* f;
-// // 	bool safety;
-// // 	int x1,x2,y1,y2, k1,k2,k3,k4;
-// // 	fopen_s(&f,"base.dat", "r+b");
-// // 	safety = oper.gett(f,&k1,&k2,&x1,&y1);
-// // 	while(safety){
-// // 		safety = oper.gett(f,&k1,&k2,&x2,&y2);
-// // 		//drawer1->qp->drawLine(int(kx*x1), int(ky*y1), int(kx*x2), int(ky*y2));
-//  		qp.drawLine(5,5,80,80);
-// // 		x1 = x2;
-// // 		y1 = y2;
-// // 	}
+	FILE* f;
+	bool safety;
+	int x1,x2,y1,y2, k1,k2,k3,k4;
+	fopen_s(&f,"base.dat", "r+b");
+	safety = oper.gett(f,&k1,&k2,&x1,&y1);
+	while(safety){
+		safety = oper.gett(f,&k1,&k2,&x2,&y2);
+		qp.drawLine(GBORDER + int(kx*x1), GHEIGHT - int(ky*y1) - GBORDER,GBORDER + int(kx*x2),GHEIGHT - int(ky*y2) - GBORDER);
+ 		//qp.drawLine(5,5,80,80);
+		x1 = x2;
+		y1 = y2;
+	}
 }
 
 FormDialog::FormDialog(QWidget * parent){
