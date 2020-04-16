@@ -24,10 +24,30 @@ protected:
 	void builder(QPainter *qp);
 };
 
+class GraphDialog: public QDialog
+{
+    Q_OBJECT
+public:
+    GraphDialog( QWidget * parent = 0);
+    virtual ~GraphDialog(){};
+
+protected:    
+	int i1;
+	CDrawer *drawer1;
+
+    
+private slots:
+//    void grapher();
+//     void poper();
+//     void sorter();
+//     void outer();
+};
+
 class FormDialog: public QDialog
 {
     Q_OBJECT
 public:
+	GraphDialog dialog1;
     FormDialog( QWidget * parent = 0);
     virtual ~FormDialog(){};
 
@@ -51,4 +71,6 @@ private slots:
 //     void sorter();
 //     void outer();
 };
+
+
 #endif

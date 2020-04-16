@@ -65,6 +65,13 @@ void CDrawer::builder(QPainter *qp){
 	fclose(f);
 }
 
+GraphDialog::GraphDialog(QWidget * parent){
+	drawer1 = new CDrawer(this);
+	QHBoxLayout *mainLayout = new QHBoxLayout();
+	mainLayout->addWidget(drawer1);
+	setLayout(mainLayout);
+	}
+
 
 FormDialog::FormDialog(QWidget * parent){
 	QHBoxLayout *mainLayout = new QHBoxLayout();
@@ -225,6 +232,8 @@ void FormDialog::outer(){
 
 void FormDialog::grapher(){
 this->drawer1->repaint();
+//dialog1 = new GraphDialog(this);
+dialog1.show();
 }
 // 	QPen pen(Qt::black, 2, Qt::SolidLine);  
 //   qp.setPen(pen);
