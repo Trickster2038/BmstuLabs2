@@ -53,6 +53,7 @@ void CDrawer::builder(QPainter *qp){
 	bool safety;
 	int x1,x2,y1,y2, k1,k2,k3,k4;
 	fopen_s(&f,"base.dat", "r+b");
+	rewind(f);
 	safety = oper.gett(f,&k1,&k2,&x1,&y1);
 	while(safety){
 		safety = oper.gett(f,&k1,&k2,&x2,&y2);
@@ -174,6 +175,7 @@ void FormDialog::outer(){
 	bool safety;
 	int k1,k2,k3,k4;
 	fopen_s(&f,"base.dat", "r+b");
+	rewind(f);
 	safety = oper.gett(f,&k1,&k2,&k3,&k4);
 	while(safety){
 //make procedure() for it
