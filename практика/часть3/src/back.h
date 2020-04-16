@@ -21,6 +21,7 @@ class CDrawer : public QWidget {
 
 protected:
 	void paintEvent(QPaintEvent *event);
+	void builder(QPainter *qp);
 };
 
 class FormDialog: public QDialog

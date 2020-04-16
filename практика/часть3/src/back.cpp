@@ -29,11 +29,16 @@ CDrawer::CDrawer(QWidget *parent): QWidget(parent)
 }
 void CDrawer::paintEvent(QPaintEvent *e) {
 	Q_UNUSED(e);
-	QPainter qp(this);
+	QPainter qpp(this);
+	builder(&qpp);
+	
+}
+
+void CDrawer::builder(QPainter *qp){
 	QPen pen(Qt::black, 2, Qt::SolidLine);  
 	 QRectF rect(0, 0, GWIDTH, GHEIGHT);
- qp.eraseRect(rect);
-   qp.setPen(pen);
+ qp->eraseRect(rect);
+   qp->setPen(pen);
    //qp.drawLine(5,5,80,80);
 
    	int mnx,mxx,mny,mxy;
@@ -51,12 +56,14 @@ void CDrawer::paintEvent(QPaintEvent *e) {
 	safety = oper.gett(f,&k1,&k2,&x1,&y1);
 	while(safety){
 		safety = oper.gett(f,&k1,&k2,&x2,&y2);
-		qp.drawLine(GBORDER + int(kx*x1), GHEIGHT - int(ky*y1) - GBORDER,GBORDER + int(kx*x2),GHEIGHT - int(ky*y2) - GBORDER);
+		qp->drawLine(GBORDER + int(kx*x1), GHEIGHT - int(ky*y1) - GBORDER,GBORDER + int(kx*x2),GHEIGHT - int(ky*y2) - GBORDER);
  		//qp.drawLine(5,5,80,80);
 		x1 = x2;
 		y1 = y2;
 	}
+	fclose(f);
 }
+
 
 FormDialog::FormDialog(QWidget * parent){
 	QHBoxLayout *mainLayout = new QHBoxLayout();
@@ -111,7 +118,7 @@ FormDialog::FormDialog(QWidget * parent){
 
 	connect(buttonM1, SIGNAL(clicked()), this, SLOT(adder()));
 	connect(buttonS4, SIGNAL(clicked()), this, SLOT(outer()));
-	connect(buttonS5, SIGNAL(clicked()), this, SLOT(grapher()));
+	connect(buttonS5, SIGNAL(clicked()), this, SLOT(repaint()));
 	//connect(spin1, SIGNAL((valueChanged(int x))), this, SLOT(i1refr(int x)));
 	// connect(button3, SIGNAL(clicked()), this, SLOT(sorter()));
 	// connect(button4, SIGNAL(clicked()), this, SLOT(outer()));
@@ -215,7 +222,7 @@ void FormDialog::outer(){
 }
 
 void FormDialog::grapher(){
-repaint();
+this->drawer1->repaint();
 }
 // 	QPen pen(Qt::black, 2, Qt::SolidLine);  
 //   qp.setPen(pen);
@@ -239,6 +246,7 @@ repaint();
 // // 		x1 = x2;
 // // 		y1 = y2;
 // // 	}
+//fclose(f);
 // }
 
 
