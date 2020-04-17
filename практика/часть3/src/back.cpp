@@ -57,7 +57,7 @@ void CDrawer::builder(QPainter *qp){
 	rewind(f);
 	safety = oper.gett(f,&k1,&k2,&x1,&y1);
 	qp->setFont(QFont("Arial", 14));
-	qp->drawText(int(GWIDTH/2.0) , GHEIGHT - (GBORDER/3.0) + GTB, "Disk space");
+	qp->drawText(int(GWIDTH/2.0) , GHEIGHT - (GBORDER/2.0) + GTB, "Disk space");
 	qp->drawText(int(GTB/3.0), int(GHEIGHT/2.0) , "Cost");
 	qp->setFont(QFont("Arial", 8));
 
@@ -149,6 +149,7 @@ FormDialog::FormDialog(QWidget * parent){
 	connect(buttonM1, SIGNAL(clicked()), this, SLOT(adder()));
 	connect(buttonS4, SIGNAL(clicked()), this, SLOT(outer()));
 	connect(buttonS5, SIGNAL(clicked()), this, SLOT(grapher()));
+	connect(buttonM2, SIGNAL(clicked()), this, SLOT(remover()));
 	//connect(spin1, SIGNAL((valueChanged(int x))), this, SLOT(i1refr(int x)));
 	// connect(button3, SIGNAL(clicked()), this, SLOT(sorter()));
 	// connect(button4, SIGNAL(clicked()), this, SLOT(outer()));
@@ -256,6 +257,11 @@ void FormDialog::grapher(){
 	dialog1 = new GraphDialog(this);
 dialog1->show();
 this->drawer1->repaint();
+//dialog1 = new GraphDialog(this);
+}
+
+void FormDialog::remover(){
+oper.deletee(combo1->currentIndex(),spin2->value(),spin3->value(),spin1->value());
 //dialog1 = new GraphDialog(this);
 }
 // 	QPen pen(Qt::black, 2, Qt::SolidLine);  

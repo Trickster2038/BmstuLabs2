@@ -86,6 +86,44 @@ struct comp {
         //code
         fclose(f);
     }
+
+    void CBase::deletee(int a1, int a2, int a3, int a4) {
+        bool notall;
+        int p1, p2, p3, p4;
+        FILE* f,*fcopy;
+        fopen_s(&f,"base.dat", "r+b");
+        fopen_s(&fcopy,"basecopy.dat", "w+b");
+        rewind(f);
+        notall = gett(f, &p1, &p2, &p3, &p4);
+        comp buf;
+
+        while (notall)
+        {
+            if(!((p1==a1)&&(p2==a2)&&(p3==a3)&&(p4==a4))){
+                buf.ptype = p1;
+                buf.ram = p2;
+                buf.hdd = p3;
+                buf.cost = p4;
+                fwrite(&buf, sizeof(buf), 1, fcopy);
+            }
+            notall = gett(f, &p1, &p2, &p3, &p4);
+        }
+        fclose(f);
+        fopen_s(&f,"base.dat", "w+b");
+        rewind(fcopy);
+        notall = gett(fcopy, &p1, &p2, &p3, &p4);
+        while (notall)
+        {
+            buf.ptype = p1;
+                buf.ram = p2;
+                buf.hdd = p3;
+                buf.cost = p4;
+            fwrite(&buf, sizeof(buf), 1, f);
+            notall = gett(fcopy, &p1, &p2, &p3, &p4);
+        }
+        fclose(f);
+        fclose(fcopy);
+    }
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 

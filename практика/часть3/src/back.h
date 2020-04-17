@@ -68,6 +68,7 @@ private slots:
     void i1refr(int x);
     void outer();
     void grapher();
+    void remover();
 //     void poper();
 //     void sorter();
 //     void outer();
