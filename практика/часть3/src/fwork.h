@@ -20,6 +20,7 @@ public:
     bool gett(FILE *f1, int *a1, int *a2, int *a3, int *a4);
     void getmm(int* a1, int* a2, int* a3, int* a4);
     void deletee(int a1, int a2, int a3, int a4);
+    void sort();
 };
 
 #endif
