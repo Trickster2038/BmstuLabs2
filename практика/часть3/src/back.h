@@ -12,13 +12,10 @@
 #include <QPainter>
 #include <QWidget>
 
-//#include "que.h"
-/// Класс, реализующий редактор
 class CDrawer : public QWidget {
  
   public:
     CDrawer(QWidget *parent = 0);
-    //QPainter qp;
 
 protected:
 	void paintEvent(QPaintEvent *event);
@@ -38,10 +35,7 @@ protected:
 
     
 private slots:
-//    void grapher();
-//     void poper();
-//     void sorter();
-//     void outer();
+
 };
 
 class TableDialog: public QWidget
@@ -54,15 +48,9 @@ public:
 protected:    
     bool checker(int k1,int k2,int k3,int k4);
     QTableWidget *table;
-
-    //QLineEdit *lineEdit1;
-    //QTextEdit *field1;
-
     
 private slots:
-//     void poper();
-//     void sorter();
-//     void outer();
+
 };
 
 class FormDialog: public QWidget
@@ -80,8 +68,6 @@ protected:
 	QTableWidget *table;
 	QSpinBox *spin1,*spin2,*spin3;
 	QComboBox *combo1;
-    //QLineEdit *lineEdit1;
-    //QTextEdit *field1;
     bool lower, isOut;
     bool checker(int k1,int k2,int k3,int k4);
     void outer();
@@ -97,9 +83,6 @@ private slots:
     
     void grapher();
     void remover();
-//     void poper();
-//     void sorter();
-//     void outer();
 };
 
 

@@ -3,31 +3,24 @@
 #include <QHBoxLayout>
 #include <QTextEdit>
 #include <QLineEdit>
-//#include <iostream>
 #include <QString>
 #include <QLabel>
 #include "back.h"
 #include "fwork.h"
-//#include "que.h"
 #define GWIDTH 720
 #define GHEIGHT 480
-#define GBORDER 30
+#define GBORDER 45
 #define GTB 12
 using namespace std;
 
-//void FormDialog::newQs(bool& outId);
-//void FormDialog::swapper(bool& caseId, bool& outId);
-//CSmartQ qobj;
+
 CBase oper;
 int operId;
 int f1,f2,f3,f4;
 
-
-// add to .h class and field
 CDrawer::CDrawer(QWidget *parent): QWidget(parent)
 { 
 	setFixedSize(QSize(GWIDTH,GHEIGHT));
-	//qp = new QPainter(this);
 	
 }
 void CDrawer::paintEvent(QPaintEvent *e) {
@@ -39,28 +32,28 @@ void CDrawer::paintEvent(QPaintEvent *e) {
 
 void CDrawer::builder(QPainter *qp){
 	QPen pen(Qt::black, 2, Qt::SolidLine);  
-	 QRectF rect(0, 0, GWIDTH, GHEIGHT);
- qp->eraseRect(rect);
-   qp->setPen(pen);
-   //qp.drawLine(5,5,80,80);
+	QRectF rect(0, 0, GWIDTH, GHEIGHT);
+	qp->eraseRect(rect);
+	qp->setPen(pen);
 
-   	int mnx,mxx,mny,mxy;
+	int mnx,mxx,mny,mxy;
 	oper.getmm(&mny,&mxy,&mnx,&mxx);
 	float kx,ky;
-	kx = 1.0 * (GWIDTH-GBORDER) / (mxx - mnx);
-	ky = 1.0 * (GHEIGHT-GBORDER) / (mxy - mny);
+	kx = 1.0 * (GWIDTH-GBORDER*2) / (mxx - mnx);
+	ky = 1.0 * (GHEIGHT-GBORDER*2) / (mxy - mny);
 
-//sorter();
+
 
 	FILE* f;
 	bool safety;
 	int x1,x2,y1,y2, k1,k2,k3,k4;
 	fopen_s(&f,"base.dat", "r+b");
 	rewind(f);
+
 	safety = oper.gett(f,&k1,&k2,&x1,&y1);
 	qp->setFont(QFont("Arial", 14));
 	qp->drawText(int(GWIDTH/2.0) , GHEIGHT - (GBORDER/2.0) + GTB, "Disk space");
-	qp->drawText(int(GTB/3.0), int(GHEIGHT/2.0) , "Cost");
+	qp->drawText(2, int(GHEIGHT/2.0) , "Cost");
 	qp->setFont(QFont("Arial", 8));
 
 	while(safety){
@@ -78,11 +71,13 @@ void CDrawer::builder(QPainter *qp){
 		qp->drawLine(GBORDER + int(kx*x2), GHEIGHT - GBORDER,GBORDER + int(kx*x2),GBORDER);
 		qp->drawLine(GBORDER , GHEIGHT - int(ky*y1) - GBORDER,GWIDTH - GBORDER,GHEIGHT - int(ky*y1) - GBORDER);
 		qp->drawLine(GBORDER , GHEIGHT - int(ky*y2) - GBORDER,GWIDTH - GBORDER,GHEIGHT - int(ky*y2) - GBORDER);
-		qp->drawText(GBORDER + int(kx*x1) - GTB, GHEIGHT - GBORDER, QString::number(x1));
-		qp->drawText(GBORDER + int(kx*x2) - GTB, GHEIGHT - GBORDER, QString::number(x2));
-		qp->drawText(GBORDER , GHEIGHT - int(ky*y1) - GBORDER - GTB, QString::number(y1));
-		qp->drawText(GBORDER , GHEIGHT - int(ky*y2) - GBORDER - GTB, QString::number(y2));
- 		//qp.drawLine(5,5,80,80);
+		qp->drawText(GBORDER + int(kx*x1) - GTB, GHEIGHT - GBORDER - 3, QString::number(x1));
+		qp->drawText(GBORDER + int(kx*x2) - GTB, GHEIGHT - GBORDER - 3, QString::number(x2));
+		if((y1!=0)&&(y2!=0)){
+			qp->drawText(GBORDER/2, GHEIGHT - int(ky*y1) - GBORDER - GTB, QString::number(y1));
+			qp->drawText(GBORDER/2, GHEIGHT - int(ky*y2) - GBORDER - GTB, QString::number(y2));
+		}
+
 		x1 = x2;
 		y1 = y2;
 	}
@@ -94,39 +89,43 @@ GraphDialog::GraphDialog(QWidget * parent){
 	QHBoxLayout *mainLayout2 = new QHBoxLayout();
 	mainLayout2 ->addWidget(drawer2);
 	setLayout(mainLayout2);
-	}
+}
 
 bool FormDialog::checker(int k1, int k2,int k3,int k4){
-bool	res;
-switch(conditionId){
-	case 0: res = true; break;
-	case 1: res =(k4 < spin1->value()); break;
-	case 2: res = (k2 > spin2->value()); break;
-	case 3: res = (k2 > spin2->value()&&(k3 > spin3->value())&&(k1==combo1->currentIndex())); break;
+	bool	res;
+	switch(conditionId){
+		case 0: res = true; break;
+		case 1: res =(k4 < spin1->value()); break;
+		case 2: res = (k2 > spin2->value()); break;
+		case 3: res = (k2 > spin2->value()&&(k3 > spin3->value())&&(k1==combo1->currentIndex())); break;
 	}
-return res;
+	return res;
 }
 
 bool TableDialog::checker(int k1, int k2,int k3,int k4){
-bool	res;
-switch(operId){
-	case 0: res = true; break;
-	case 1: res =(k4 < f4); break;
-	case 2: res = (k2 > f3); break;
-	case 3: res = ((k2 > f2)&&(k3 > f3)&&(k1==f1)); break;
+	bool	res;
+	switch(operId){
+		case 0: res = true; break;
+		case 1: res =(k4 < f4); break;
+		case 2: res = (k2 > f3); break;
+		case 3: res = ((k2 > f2)&&(k3 > f3)&&(k1==f1)); break;
 	}
-return res;
+	res = (res) && (k3!=0) && (k4!=0);
+	return res;
 }
 
 TableDialog::TableDialog(QWidget * parent){
+	oper.push(0,0,0,0);
+
 	table = new QTableWidget(0,4,this);
+	QStringList headers = { "proc type","ram", "disk space", "cost"};
+	table->setHorizontalHeaderLabels(headers);
 	QHBoxLayout *mainLayout2 = new QHBoxLayout();
 	mainLayout2 ->addWidget(table);
 	setLayout(mainLayout2);
 
-
 	table->setRowCount(0);
-	//clear table?
+
 	table->setColumnCount(4);
 	FILE* f;
 	bool safety;
@@ -136,54 +135,55 @@ TableDialog::TableDialog(QWidget * parent){
 	safety = oper.gett(f,&k1,&k2,&k3,&k4);
 	while(safety){
 		if(checker(k1,k2,k3,k4)){
-//make procedure() for it
-		table->setRowCount(table->rowCount() + 1);
+
+			table->setRowCount(table->rowCount() + 1);
 
 
-		QTableWidgetItem* item = new QTableWidgetItem;
-		QString s;
-		switch(k1){
-			case 0:
-			s = "x32";
-			break;
-			case 1:
-			s = "x64";
-			break;
-			case 2:
-			s = "other";
-			break;
+			QTableWidgetItem* item = new QTableWidgetItem;
+			QString s;
+			switch(k1){
+				case 0:
+				s = "x32";
+				break;
+				case 1:
+				s = "x64";
+				break;
+				case 2:
+				s = "other";
+				break;
+			}
+			item->setText(s);
+			item->setTextAlignment(Qt::AlignCenter);
+			table->setItem(table->rowCount() - 1, 0, item);
+
+			item = new QTableWidgetItem;
+			s = QString::number(k2);
+			item->setText(s);
+			item->setTextAlignment(Qt::AlignCenter);
+			table->setItem(table->rowCount() - 1, 1, item);
+
+			item = new QTableWidgetItem;
+			s = QString::number(k3);
+			item->setText(s);
+			item->setTextAlignment(Qt::AlignCenter);
+			table->setItem(table->rowCount() - 1, 2, item);
+
+			item = new QTableWidgetItem;
+			s = QString::number(k4);
+			item->setText(s);
+			item->setTextAlignment(Qt::AlignCenter);
+			table->setItem(table->rowCount() - 1, 3, item);
 		}
-		item->setText(s);
-		item->setTextAlignment(Qt::AlignCenter);
-		table->setItem(table->rowCount() - 1, 0, item);
 
-		item = new QTableWidgetItem;
-		s = QString::number(k2);
-		item->setText(s);
-		item->setTextAlignment(Qt::AlignCenter);
-		table->setItem(table->rowCount() - 1, 1, item);
-
-		item = new QTableWidgetItem;
-		s = QString::number(k3);
-		item->setText(s);
-		item->setTextAlignment(Qt::AlignCenter);
-		table->setItem(table->rowCount() - 1, 2, item);
-
-		item = new QTableWidgetItem;
-		s = QString::number(k4);
-		item->setText(s);
-		item->setTextAlignment(Qt::AlignCenter);
-		table->setItem(table->rowCount() - 1, 3, item);
-	}
-//delete item;
 		safety = oper.gett(f,&k1,&k2,&k3,&k4);
 	}
 
 	fclose(f);
-	}
+}
 
 
 FormDialog::FormDialog(QWidget * parent){
+	this->setWindowTitle("Database manager");
 	QHBoxLayout *mainLayout = new QHBoxLayout();
 	QVBoxLayout *layout1 = new QVBoxLayout();
 	QVBoxLayout *layout2 = new QVBoxLayout();
@@ -217,7 +217,7 @@ FormDialog::FormDialog(QWidget * parent){
 	spin3 = new QSpinBox(this);
 	spin3->setMaximum(10000);
 	spin3->setMinimum(0);
-	//lineEdit1 = new QLineEdit();
+
 	QPushButton *buttonS1 = new QPushButton("max cost");
 	QPushButton *buttonS2 = new QPushButton("min ram");
 	QPushButton *buttonS3 = new QPushButton("all params");
@@ -225,15 +225,11 @@ FormDialog::FormDialog(QWidget * parent){
 	QPushButton *buttonS5 = new QPushButton("refresh graph");
 	QPushButton *buttonM1 = new QPushButton("add");
 	QPushButton *buttonM2 = new QPushButton("remove");
-	//field1 = new QTextEdit();
-	//field1->setReadOnly(true);
-	//QString str1;
+
 	bool lower = true, isOut = false;
 	int i1;
 	i1 = spin1->value();
 	
-
-
 	connect(buttonM1, SIGNAL(clicked()), this, SLOT(adder()));
 	connect(buttonS4, SIGNAL(clicked()), this, SLOT(outer0()));
 	connect(buttonS1, SIGNAL(clicked()), this, SLOT(outer1()));
@@ -241,11 +237,7 @@ FormDialog::FormDialog(QWidget * parent){
 	connect(buttonS3, SIGNAL(clicked()), this, SLOT(outer3()));
 	connect(buttonS5, SIGNAL(clicked()), this, SLOT(grapher()));
 	connect(buttonM2, SIGNAL(clicked()), this, SLOT(remover()));
-	//connect(spin1, SIGNAL((valueChanged(int x))), this, SLOT(i1refr(int x)));
-	// connect(button3, SIGNAL(clicked()), this, SLOT(sorter()));
-	// connect(button4, SIGNAL(clicked()), this, SLOT(outer()));
-	//connect(lineEdit1, SIGNAL(textEdited(QString)), this, SLOT(newQs()));
-	//mainLayout->addWidget(lineEdit1);
+
 	layout1->addWidget(l11);
 	layout1->addWidget(buttonS1);
 	layout1->addWidget(buttonS2);
@@ -273,8 +265,6 @@ FormDialog::FormDialog(QWidget * parent){
 	mainLayout->addWidget(drawer1);
 	table->hide();
 	drawer1->hide();
-	//mainLayout->addWidget(layout1);
-	//mainLayout->addWidget(field1);
 	setLayout(mainLayout);
 
 };
@@ -285,8 +275,6 @@ void FormDialog::i1refr(int x){
 }
 
 void FormDialog::adder(){
-	//spin1->setValue(2038);
-	//i1 = spin1->value();
 	oper.push(combo1->currentIndex(),spin2->value(),spin3->value(),spin1->value());
 }
 
@@ -294,7 +282,6 @@ void FormDialog::adder(){
 
 void FormDialog::outer(){
 	table->setRowCount(0);
-	//clear table?
 	table->setColumnCount(4);
 	FILE* f;
 	bool safety;
@@ -304,46 +291,44 @@ void FormDialog::outer(){
 	safety = oper.gett(f,&k1,&k2,&k3,&k4);
 	while(safety){
 		if(checker(k1,k2,k3,k4)){
-//make procedure() for it
-		table->setRowCount(table->rowCount() + 1);
+			table->setRowCount(table->rowCount() + 1);
 
 
-		QTableWidgetItem* item = new QTableWidgetItem;
-		QString s;
-		switch(k1){
-			case 0:
-			s = "x32";
-			break;
-			case 1:
-			s = "x64";
-			break;
-			case 2:
-			s = "other";
-			break;
+			QTableWidgetItem* item = new QTableWidgetItem;
+			QString s;
+			switch(k1){
+				case 0:
+				s = "x32";
+				break;
+				case 1:
+				s = "x64";
+				break;
+				case 2:
+				s = "other";
+				break;
+			}
+			item->setText(s);
+			item->setTextAlignment(Qt::AlignCenter);
+			table->setItem(table->rowCount() - 1, 0, item);
+
+			item = new QTableWidgetItem;
+			s = QString::number(k2);
+			item->setText(s);
+			item->setTextAlignment(Qt::AlignCenter);
+			table->setItem(table->rowCount() - 1, 1, item);
+
+			item = new QTableWidgetItem;
+			s = QString::number(k3);
+			item->setText(s);
+			item->setTextAlignment(Qt::AlignCenter);
+			table->setItem(table->rowCount() - 1, 2, item);
+
+			item = new QTableWidgetItem;
+			s = QString::number(k4);
+			item->setText(s);
+			item->setTextAlignment(Qt::AlignCenter);
+			table->setItem(table->rowCount() - 1, 3, item);
 		}
-		item->setText(s);
-		item->setTextAlignment(Qt::AlignCenter);
-		table->setItem(table->rowCount() - 1, 0, item);
-
-		item = new QTableWidgetItem;
-		s = QString::number(k2);
-		item->setText(s);
-		item->setTextAlignment(Qt::AlignCenter);
-		table->setItem(table->rowCount() - 1, 1, item);
-
-		item = new QTableWidgetItem;
-		s = QString::number(k3);
-		item->setText(s);
-		item->setTextAlignment(Qt::AlignCenter);
-		table->setItem(table->rowCount() - 1, 2, item);
-
-		item = new QTableWidgetItem;
-		s = QString::number(k4);
-		item->setText(s);
-		item->setTextAlignment(Qt::AlignCenter);
-		table->setItem(table->rowCount() - 1, 3, item);
-	}
-//delete item;
 		safety = oper.gett(f,&k1,&k2,&k3,&k4);
 	}
 
@@ -352,7 +337,6 @@ void FormDialog::outer(){
 
 void FormDialog::outer0(){
 	operId = 0;
-	//combo1->currentIndex(),spin2->value(),spin3->value(),spin1->value()
 	f1 =combo1->currentIndex();
 	f2=spin2->value();
 	f3=spin3->value();
@@ -361,98 +345,48 @@ void FormDialog::outer0(){
 	table1->show();
 	conditionId = 0;
 	outer();
-	}
-	void FormDialog::outer1(){
+}
+void FormDialog::outer1(){
+	operId = 1;
+	f1 =combo1->currentIndex();
+	f2=spin2->value();
+	f3=spin3->value();
+	f4=spin1->value();
+	table1 = new TableDialog(this);
+	table1->show();
 	conditionId = 1;
 	outer();
-	}
-	void FormDialog::outer2(){
+}
+void FormDialog::outer2(){
+	operId = 2;
+	f1 =combo1->currentIndex();
+	f2=spin2->value();
+	f3=spin3->value();
+	f4=spin1->value();
+	table1 = new TableDialog(this);
+	table1->show();
 	conditionId = 2;
 	outer();
-	}
-	void FormDialog::outer3(){
+}
+void FormDialog::outer3(){
+	operId = 3;
+	f1 =combo1->currentIndex();
+	f2=spin2->value();
+	f3=spin3->value();
+	f4=spin1->value();
+	table1 = new TableDialog(this);
+	table1->show();
 	conditionId = 3;
 	outer();
-	}
+}
 
 void FormDialog::grapher(){
 	oper.sort();
 	dialog1 = new GraphDialog(this);
-dialog1->show();
-this->drawer1->repaint();
-//dialog1 = new GraphDialog(this);
+	dialog1->show();
+	this->drawer1->repaint();
 }
 
 void FormDialog::remover(){
-oper.deletee(combo1->currentIndex(),spin2->value(),spin3->value(),spin1->value());
-//dialog1 = new GraphDialog(this);
+	oper.deletee(combo1->currentIndex(),spin2->value(),spin3->value(),spin1->value());
 }
-// 	QPen pen(Qt::black, 2, Qt::SolidLine);  
-//   qp.setPen(pen);
-// // 	int mnx,mxx,mny,mxy;
-// // 	oper.getmm(&mny,&mxy,&mnx,&mxx);
-// // 	float kx,ky;
-// // 	kx = 1.0 * (GWIDTH-GBORDER) / (mxx - mnx);
-// // 	ky = 1.0 * (GHEIGHT-GBORDER) / (mxy - mny);
-
-// // //sorter();
-
-// // 	FILE* f;
-// // 	bool safety;
-// // 	int x1,x2,y1,y2, k1,k2,k3,k4;
-// // 	fopen_s(&f,"base.dat", "r+b");
-// // 	safety = oper.gett(f,&k1,&k2,&x1,&y1);
-// // 	while(safety){
-// // 		safety = oper.gett(f,&k1,&k2,&x2,&y2);
-// // 		//drawer1->qp->drawLine(int(kx*x1), int(ky*y1), int(kx*x2), int(ky*y2));
-//  		qp.drawLine(5,5,80,80);
-// // 		x1 = x2;
-// // 		y1 = y2;
-// // 	}
-//fclose(f);
-// }
-
-
-// void FormDialog::newQs(){
-// 	//isOut = false;
-// 	field1->setText("");
-// 	field1->append("input: " + lineEdit1->text());
-// };
-
-// void FormDialog::pusher(){
-// 	QString str = lineEdit1->text();
-//     QByteArray a= str.toUtf8(); // to....
-//     char* d=  a.data();
-// 	qobj.add(*d);
-
-// 	//QString str2(QChar(*d));
-// 	field1->append("added " + QString::fromLocal8Bit(d,1));
-// 	//field1->append(str2);
-// };
-
-// void FormDialog::poper(){
-// 	if(qobj.getlng()>0){
-// 		qobj.rm();
-// 	field1->append("last elem removed");
-// 	}
-// 	else{
-// 		field1->append("queue is empty");
-// 	}
-// };
-
-// void FormDialog::sorter(){
-// 	qobj.sort();
-// 	field1->append("sorted");
-// };
-
-// void FormDialog::outer(){
-// 	qobj.reset();
-// 	field1->setText("");
-// 	field1->append("Queue:");
-// 	for(int i=0; i < qobj.getlng(); i++){
-// 		char *ch;
-// 		*ch = qobj.gett();
-// 		field1->append(QString::fromLocal8Bit(ch,1));
-// 		//field1->append("^");
-// 	}
-// };
