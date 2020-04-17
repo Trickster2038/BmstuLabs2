@@ -288,7 +288,7 @@ void FormDialog::outer0(){
 	}
 
 void FormDialog::grapher(){
-	oper.sort();
+	//oper.sort();
 	dialog1 = new GraphDialog(this);
 dialog1->show();
 this->drawer1->repaint();

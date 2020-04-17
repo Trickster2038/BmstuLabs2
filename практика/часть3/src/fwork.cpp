@@ -115,9 +115,9 @@ struct comp {
         while (notall)
         {
             buf.ptype = p1;
-                buf.ram = p2;
-                buf.hdd = p3;
-                buf.cost = p4;
+            buf.ram = p2;
+            buf.hdd = p3;
+            buf.cost = p4;
             fwrite(&buf, sizeof(buf), 1, f);
             notall = gett(fcopy, &p1, &p2, &p3, &p4);
         }
@@ -125,45 +125,45 @@ struct comp {
         fclose(fcopy);
     }
 
-    void CBase::sort(){
-        comp buf0,buf1,buf2;
-        int p1,p2,p3,p4;
-        bool notall, sorted;
-        FILE* f;
-        sorted = false;
-        while(!sorted){
-            sorted = true;
-            fopen_s(&f,"base.dat", "r+b");
-        rewind(f);
-        notall = gett(f, &p1, &p2, &p3, &p4);
-        buf1.ptype = p1;
-        buf1.ram = p2;
-        buf1.hdd = p3;
-        buf1.cost = p4;     
-        while (notall)
-        {
+    // void CBase::sort(){
+    //     comp buf0,buf1,buf2;
+    //     int p1,p2,p3,p4;
+    //     bool notall, sorted;
+    //     FILE* f;
+    //     sorted = false;
+    //     while(!sorted){
+    //         sorted = true;
+    //         fopen_s(&f,"base.dat", "r+b");
+    //     rewind(f);
+    //     notall = gett(f, &p1, &p2, &p3, &p4);
+    //     buf1.ptype = p1;
+    //     buf1.ram = p2;
+    //     buf1.hdd = p3;
+    //     buf1.cost = p4;     
+    //     while (notall)
+    //     {
             
-            notall = gett(f, &p1, &p2, &p3, &p4);
-            buf2.ptype = p1;
-            buf2.ram = p2;
-            buf2.hdd = p3;
-            buf2.cost = p4;
+    //         notall = gett(f, &p1, &p2, &p3, &p4);
+    //         buf2.ptype = p1;
+    //         buf2.ram = p2;
+    //         buf2.hdd = p3;
+    //         buf2.cost = p4;
 
-            if(buf2.hdd<buf1.hdd){
-                fseek(f,sizeof(buf1)*(-2), SEEK_CUR);
-                fwrite(&buf2, sizeof(buf2), 1, f);
-                fwrite(&buf2, sizeof(buf2), 1, f);
-                sorted = false;
-            }
+    //         if(buf2.hdd<buf1.hdd){
+    //             fseek(f,sizeof(buf1)*(-2), SEEK_CUR);
+    //             fwrite(&buf2, sizeof(buf2), 1, f);
+    //             fwrite(&buf2, sizeof(buf2), 1, f);
+    //             sorted = false;
+    //         }
 
-            buf1.ptype = buf2.ptype;
-            buf1.ram = buf2.ram;
-            buf1.hdd = buf2.hdd ;
-            buf1.cost = buf2.cost;
-        }
-        fclose(f);
-    }
-    }
+    //         buf1.ptype = buf2.ptype;
+    //         buf1.ram = buf2.ram;
+    //         buf1.hdd = buf2.hdd ;
+    //         buf1.cost = buf2.cost;
+    //     }
+    //     fclose(f);
+    // }
+    // }
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 
