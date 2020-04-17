@@ -44,11 +44,33 @@ private slots:
 //     void outer();
 };
 
+class TableDialog: public QWidget
+{
+    Q_OBJECT
+public:
+    TableDialog( QWidget * parent = 0);
+    virtual ~TableDialog(){};
+
+protected:    
+    bool checker(int k1,int k2,int k3,int k4);
+    QTableWidget *table;
+
+    //QLineEdit *lineEdit1;
+    //QTextEdit *field1;
+
+    
+private slots:
+//     void poper();
+//     void sorter();
+//     void outer();
+};
+
 class FormDialog: public QWidget
 {
     Q_OBJECT
 public:
 	GraphDialog *dialog1;
+    TableDialog *table1;
     FormDialog( QWidget * parent = 0);
     virtual ~FormDialog(){};
 

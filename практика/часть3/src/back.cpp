@@ -19,6 +19,8 @@ using namespace std;
 //void FormDialog::swapper(bool& caseId, bool& outId);
 //CSmartQ qobj;
 CBase oper;
+int operId;
+int f1,f2,f3,f4;
 
 
 // add to .h class and field
@@ -92,6 +94,92 @@ GraphDialog::GraphDialog(QWidget * parent){
 	QHBoxLayout *mainLayout2 = new QHBoxLayout();
 	mainLayout2 ->addWidget(drawer2);
 	setLayout(mainLayout2);
+	}
+
+bool FormDialog::checker(int k1, int k2,int k3,int k4){
+bool	res;
+switch(conditionId){
+	case 0: res = true; break;
+	case 1: res =(k4 < spin1->value()); break;
+	case 2: res = (k2 > spin2->value()); break;
+	case 3: res = (k2 > spin2->value()&&(k3 > spin3->value())&&(k1==combo1->currentIndex())); break;
+	}
+return res;
+}
+
+bool TableDialog::checker(int k1, int k2,int k3,int k4){
+bool	res;
+switch(operId){
+	case 0: res = true; break;
+	case 1: res =(k4 < f4); break;
+	case 2: res = (k2 > f3); break;
+	case 3: res = ((k2 > f2)&&(k3 > f3)&&(k1==f1)); break;
+	}
+return res;
+}
+
+TableDialog::TableDialog(QWidget * parent){
+	table = new QTableWidget(0,4,this);
+	QHBoxLayout *mainLayout2 = new QHBoxLayout();
+	mainLayout2 ->addWidget(table);
+	setLayout(mainLayout2);
+
+
+	table->setRowCount(0);
+	//clear table?
+	table->setColumnCount(4);
+	FILE* f;
+	bool safety;
+	int k1,k2,k3,k4;
+	fopen_s(&f,"base.dat", "r+b");
+	rewind(f);
+	safety = oper.gett(f,&k1,&k2,&k3,&k4);
+	while(safety){
+		if(checker(k1,k2,k3,k4)){
+//make procedure() for it
+		table->setRowCount(table->rowCount() + 1);
+
+
+		QTableWidgetItem* item = new QTableWidgetItem;
+		QString s;
+		switch(k1){
+			case 0:
+			s = "x32";
+			break;
+			case 1:
+			s = "x64";
+			break;
+			case 2:
+			s = "other";
+			break;
+		}
+		item->setText(s);
+		item->setTextAlignment(Qt::AlignCenter);
+		table->setItem(table->rowCount() - 1, 0, item);
+
+		item = new QTableWidgetItem;
+		s = QString::number(k2);
+		item->setText(s);
+		item->setTextAlignment(Qt::AlignCenter);
+		table->setItem(table->rowCount() - 1, 1, item);
+
+		item = new QTableWidgetItem;
+		s = QString::number(k3);
+		item->setText(s);
+		item->setTextAlignment(Qt::AlignCenter);
+		table->setItem(table->rowCount() - 1, 2, item);
+
+		item = new QTableWidgetItem;
+		s = QString::number(k4);
+		item->setText(s);
+		item->setTextAlignment(Qt::AlignCenter);
+		table->setItem(table->rowCount() - 1, 3, item);
+	}
+//delete item;
+		safety = oper.gett(f,&k1,&k2,&k3,&k4);
+	}
+
+	fclose(f);
 	}
 
 
@@ -200,16 +288,7 @@ void FormDialog::adder(){
 	oper.push(combo1->currentIndex(),spin2->value(),spin3->value(),spin1->value());
 }
 
-bool FormDialog::checker(int k1, int k2,int k3,int k4){
-bool	res;
-switch(conditionId){
-	case 0: res = true; break;
-	case 1: res =(k4 < spin1->value()); break;
-	case 2: res = (k2 > spin2->value()); break;
-	case 3: res = (k2 > spin2->value()&&(k3 > spin3->value())&&(k1==combo1->currentIndex())); break;
-	}
-return res;
-}
+
 
 void FormDialog::outer(){
 	table->setRowCount(0);
@@ -270,6 +349,14 @@ void FormDialog::outer(){
 }
 
 void FormDialog::outer0(){
+	operId = 0;
+	//combo1->currentIndex(),spin2->value(),spin3->value(),spin1->value()
+	f1 =combo1->currentIndex();
+	f2=spin2->value();
+	f3=spin3->value();
+	f4=spin1->value();
+	table1 = new TableDialog(this);
+	table1->show();
 	conditionId = 0;
 	outer();
 	}
