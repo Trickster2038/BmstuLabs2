@@ -271,6 +271,8 @@ FormDialog::FormDialog(QWidget * parent){
 	mainLayout->addLayout(layout2);
 	mainLayout->addWidget(table);
 	mainLayout->addWidget(drawer1);
+	table->hide();
+	drawer1->hide();
 	//mainLayout->addWidget(layout1);
 	//mainLayout->addWidget(field1);
 	setLayout(mainLayout);
