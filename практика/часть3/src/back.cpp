@@ -147,7 +147,10 @@ FormDialog::FormDialog(QWidget * parent){
 
 
 	connect(buttonM1, SIGNAL(clicked()), this, SLOT(adder()));
-	connect(buttonS4, SIGNAL(clicked()), this, SLOT(outer()));
+	connect(buttonS4, SIGNAL(clicked()), this, SLOT(outer0()));
+	connect(buttonS1, SIGNAL(clicked()), this, SLOT(outer1()));
+	connect(buttonS2, SIGNAL(clicked()), this, SLOT(outer2()));
+	connect(buttonS3, SIGNAL(clicked()), this, SLOT(outer3()));
 	connect(buttonS5, SIGNAL(clicked()), this, SLOT(grapher()));
 	connect(buttonM2, SIGNAL(clicked()), this, SLOT(remover()));
 	//connect(spin1, SIGNAL((valueChanged(int x))), this, SLOT(i1refr(int x)));
@@ -197,6 +200,17 @@ void FormDialog::adder(){
 	oper.push(combo1->currentIndex(),spin2->value(),spin3->value(),spin1->value());
 }
 
+bool FormDialog::checker(int k1, int k2,int k3,int k4){
+bool	res;
+switch(conditionId){
+	case 0: res = true; break;
+	case 1: res =(k4 < spin1->value()); break;
+	case 2: res = (k2 > spin2->value()); break;
+	case 3: res = (k2 > spin2->value()&&(k3 > spin3->value())&&(k1==combo1->currentIndex())); break;
+	}
+return res;
+}
+
 void FormDialog::outer(){
 	table->setRowCount(0);
 	//clear table?
@@ -208,6 +222,7 @@ void FormDialog::outer(){
 	rewind(f);
 	safety = oper.gett(f,&k1,&k2,&k3,&k4);
 	while(safety){
+		if(checker(k1,k2,k3,k4)){
 //make procedure() for it
 		table->setRowCount(table->rowCount() + 1);
 
@@ -246,12 +261,30 @@ void FormDialog::outer(){
 		item->setText(s);
 		item->setTextAlignment(Qt::AlignCenter);
 		table->setItem(table->rowCount() - 1, 3, item);
+	}
 //delete item;
 		safety = oper.gett(f,&k1,&k2,&k3,&k4);
 	}
 
 	fclose(f);
 }
+
+void FormDialog::outer0(){
+	conditionId = 0;
+	outer();
+	}
+	void FormDialog::outer1(){
+	conditionId = 1;
+	outer();
+	}
+	void FormDialog::outer2(){
+	conditionId = 2;
+	outer();
+	}
+	void FormDialog::outer3(){
+	conditionId = 3;
+	outer();
+	}
 
 void FormDialog::grapher(){
 	dialog1 = new GraphDialog(this);
