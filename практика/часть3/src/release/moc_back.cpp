@@ -103,20 +103,20 @@ struct qt_meta_stringdata_FormDialog_t {
 static const qt_meta_stringdata_FormDialog_t qt_meta_stringdata_FormDialog = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "FormDialog"
-QT_MOC_LITERAL(1, 11, 5), // "adder"
-QT_MOC_LITERAL(2, 17, 0), // ""
-QT_MOC_LITERAL(3, 18, 6), // "outer0"
-QT_MOC_LITERAL(4, 25, 6), // "outer1"
-QT_MOC_LITERAL(5, 32, 6), // "outer2"
-QT_MOC_LITERAL(6, 39, 6), // "outer3"
+QT_MOC_LITERAL(1, 11, 6), // "outer0"
+QT_MOC_LITERAL(2, 18, 0), // ""
+QT_MOC_LITERAL(3, 19, 6), // "outer1"
+QT_MOC_LITERAL(4, 26, 6), // "outer2"
+QT_MOC_LITERAL(5, 33, 6), // "outer3"
+QT_MOC_LITERAL(6, 40, 5), // "adder"
 QT_MOC_LITERAL(7, 46, 6), // "i1refr"
 QT_MOC_LITERAL(8, 53, 1), // "x"
 QT_MOC_LITERAL(9, 55, 7), // "grapher"
 QT_MOC_LITERAL(10, 63, 7) // "remover"
 
     },
-    "FormDialog\0adder\0\0outer0\0outer1\0outer2\0"
-    "outer3\0i1refr\0x\0grapher\0remover"
+    "FormDialog\0outer0\0\0outer1\0outer2\0"
+    "outer3\0adder\0i1refr\0x\0grapher\0remover"
 };
 #undef QT_MOC_LITERAL
 
@@ -162,11 +162,11 @@ void FormDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<FormDialog *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->adder(); break;
-        case 1: _t->outer0(); break;
-        case 2: _t->outer1(); break;
-        case 3: _t->outer2(); break;
-        case 4: _t->outer3(); break;
+        case 0: _t->outer0(); break;
+        case 1: _t->outer1(); break;
+        case 2: _t->outer2(); break;
+        case 3: _t->outer3(); break;
+        case 4: _t->adder(); break;
         case 5: _t->i1refr((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 6: _t->grapher(); break;
         case 7: _t->remover(); break;

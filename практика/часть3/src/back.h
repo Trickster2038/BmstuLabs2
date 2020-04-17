@@ -53,7 +53,7 @@ public:
     virtual ~FormDialog(){};
 
 protected:    
-	int i1,conditionId;
+	int i1, conditionId;
 	CDrawer *drawer1;
 	QTableWidget *table;
 	QSpinBox *spin1,*spin2,*spin3;
@@ -66,12 +66,13 @@ protected:
 
     
 private slots:
-    void adder();
     void outer0();
     void outer1();
     void outer2();
     void outer3();
+    void adder();
     void i1refr(int x);
+    
     void grapher();
     void remover();
 //     void poper();

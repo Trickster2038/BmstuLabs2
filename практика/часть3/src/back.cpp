@@ -36,7 +36,6 @@ void CDrawer::paintEvent(QPaintEvent *e) {
 }
 
 void CDrawer::builder(QPainter *qp){
-	//oper.sort();
 	QPen pen(Qt::black, 2, Qt::SolidLine);  
 	 QRectF rect(0, 0, GWIDTH, GHEIGHT);
  qp->eraseRect(rect);
@@ -223,8 +222,8 @@ void FormDialog::outer(){
 	rewind(f);
 	safety = oper.gett(f,&k1,&k2,&k3,&k4);
 	while(safety){
+		if(checker(k1,k2,k3,k4)){
 //make procedure() for it
-	if(checker(k1,k2,k3,k4)){
 		table->setRowCount(table->rowCount() + 1);
 
 
@@ -288,7 +287,6 @@ void FormDialog::outer0(){
 	}
 
 void FormDialog::grapher(){
-	//oper.sort();
 	dialog1 = new GraphDialog(this);
 dialog1->show();
 this->drawer1->repaint();
