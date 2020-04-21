@@ -79,7 +79,7 @@ private slots:
     void outer2();
     void outer3();
     void adder();
-    void i1refr(int x);
+    //void i1refr(int x);
     
     void grapher();
     void remover();

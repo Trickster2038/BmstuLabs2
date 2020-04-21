@@ -85,6 +85,7 @@ void CDrawer::builder(QPainter *qp){
 }
 
 GraphDialog::GraphDialog(QWidget * parent){
+	this->setWindowTitle("Database manager");
 	drawer2 = new CDrawer(this);
 	QHBoxLayout *mainLayout2 = new QHBoxLayout();
 	mainLayout2 ->addWidget(drawer2);
@@ -116,6 +117,7 @@ bool TableDialog::checker(int k1, int k2,int k3,int k4){
 
 TableDialog::TableDialog(QWidget * parent){
 	oper.push(0,0,0,0);
+	this->setWindowTitle("Database manager");
 
 	table = new QTableWidget(0,4,this);
 	QStringList headers = { "proc type","ram", "disk space", "cost"};
@@ -335,48 +337,50 @@ void FormDialog::outer(){
 	fclose(f);
 }
 
-void FormDialog::outer0(){
-	operId = 0;
-	f1 =combo1->currentIndex();
-	f2=spin2->value();
+void FormDialog::outer0(){     
+	operId = 0;    
+	f1
+	=combo1->currentIndex();   
+	f2=spin2->value();    
 	f3=spin3->value();
-	f4=spin1->value();
+	f4=spin1->value();    
 	table1 = new TableDialog(this);
-	table1->show();
-	conditionId = 0;
+	table1->show();    
+	conditionId = 0;    
+	outer(); 
+} 
+
+void FormDialog::outer1(){    
+	operId = 1;    
+	f1 =combo1->currentIndex();
+	f2=spin2->value();   
+	f3=spin3->value();    
+	f4=spin1->value();
+	table1 = new TableDialog(this);  
+	table1->show();    
+	conditionId =1;   
+	outer(); 
+} 
+void FormDialog::outer2(){     
+	operId = 2;     
+	f1=combo1->currentIndex();   
+	f2=spin2->value();   
+	f3=spin3->value();
+	f4=spin1->value();  
+	table1 = new TableDialog(this);
+	table1->show();   
+	conditionId = 2;   
 	outer();
-}
-void FormDialog::outer1(){
-	operId = 1;
+} 
+void FormDialog::outer3(){  
+	operId = 3;   
 	f1 =combo1->currentIndex();
-	f2=spin2->value();
-	f3=spin3->value();
+	f2=spin2->value();    
+	f3=spin3->value();   
 	f4=spin1->value();
-	table1 = new TableDialog(this);
-	table1->show();
-	conditionId = 1;
-	outer();
-}
-void FormDialog::outer2(){
-	operId = 2;
-	f1 =combo1->currentIndex();
-	f2=spin2->value();
-	f3=spin3->value();
-	f4=spin1->value();
-	table1 = new TableDialog(this);
-	table1->show();
-	conditionId = 2;
-	outer();
-}
-void FormDialog::outer3(){
-	operId = 3;
-	f1 =combo1->currentIndex();
-	f2=spin2->value();
-	f3=spin3->value();
-	f4=spin1->value();
-	table1 = new TableDialog(this);
-	table1->show();
-	conditionId = 3;
+	table1 = new TableDialog(this);  
+	table1->show();   
+	conditionId =3;  
 	outer();
 }
 
